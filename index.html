@@ -101,8 +101,8 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("/data/Q1/clean_greenspace.csv", function(error, data) {
-  if (error) throw error;
+d3.csv("/data/Q1/clean_greenspace.csv", function(data) {
+  // if (error) throw error;
 
   var survey_type = d3.keys(data[0]).filter(function(key) { return key !== Things_Added_to_the_Park; });
 
