@@ -1,13 +1,6 @@
 //Define data
 
-var data= [
-    {name:'John', count:5},
-    {name:'Arya', count:6},
-    {name:'Jamie', count:7},
-    {name:'Daenerys', count:9},
-    {name:'Cersei', count:2},
-    {name:'Ramsay', count:4}
-    ];
+d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     
     var barwidth=50;
     var barOffset=5;
@@ -18,7 +11,7 @@ var data= [
     var margin={
     top:40,
     bottom:30,
-    left:30,
+    left:100,
     right:30
     };
     
@@ -36,7 +29,7 @@ var data= [
                   .range([height-margin.bottom, margin.top])
      
      var xScale=d3.scaleBand()
-                                 .domain(data.map(function(d) { return d.name; }))
+                                 .domain(data.map(function(d) { return d.Things_Added_to_the_Park; }))
                   .range([margin.left, width-margin.right])
                   .padding(0.5);
     
@@ -70,12 +63,12 @@ var data= [
                           .data(data)
                 .enter()
                 .append('rect')
-                    .attr("x", function(d){return xScale(d.name);})
-                  .attr("y", function(d){return yScale(d.count);})
+                    .attr("x", function(d){return xScale(d.Things_Added_to_the_Park);})
+                  .attr("y", function(d){return yScale(d.in_person_pedestrian);})
                   .attr("width", xScale.bandwidth())
                   .attr('fill','steelblue')
                   .attr("height", function(d){
-                                                      return height-margin.bottom-yScale(d.count);
+                                                      return height-margin.bottom-yScale(d.in_person_pedestrian);
                   })
                   
                   
@@ -100,4 +93,4 @@ var data= [
      
     
     
-    
+                });
