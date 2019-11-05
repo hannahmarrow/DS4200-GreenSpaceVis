@@ -2,7 +2,7 @@ var barwidth = 50;
 var barOffset = 5;
 
 //Generate SVG
-var width = 600,
+var width = 1200,
   height = 400;
 var margin = {
   top: 40,
@@ -42,35 +42,67 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .attr("y", 30)
     .attr("x", 20)
     .style("stroke", 'black')
-    .text("count");
+    .text("Number of Responses");
 
   var xAxis = svg.append('g')
     .attr("transform", `translate(0,${height-margin.bottom})`)
     .call(d3.axisBottom().scale(xScale))
     //Add label
     .append("text")
-    .attr("x", width - margin.left)
-    .attr("y", -10)
+    .attr("x", width - 70)
+    .attr("y", +20)
     .style("stroke", 'black')
-    .text("Things Added to Park");
+    .text("Things Added\nto Park");
 
   //Draw bars
-  var bar = svg.selectAll('rect')
+  var bar = svg.selectAll('.pedbar')
     .data(data)
     .enter()
     .append('rect')
+    .attr("class",'pedbar')
     .attr("x", function(d) {
       return xScale(d.Things_Added_to_the_Park);
     })
     .attr("y", function(d) {
       return yScale(d.in_person_pedestrian);
     })
-    .attr("width", xScale.bandwidth())
+    .attr("width", xScale.bandwidth()/4)
     .attr('fill', 'steelblue')
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.in_person_pedestrian);
     })
-
+    var bar2 = svg.selectAll('.orbar')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr("class",'orbar')
+      .attr("x", function(d) {
+        return xScale(d.Things_Added_to_the_Park)+xScale.bandwidth()/4;
+      })
+      .attr("y", function(d) {
+        return yScale(d.online_resident);
+      })
+      .attr("width", xScale.bandwidth()/4)
+      .attr('fill', 'red')
+      .attr("height", function(d) {
+        return height - margin.bottom - yScale(d.online_resident);
+      })
+      var bar3 = svg.selectAll('.iprbar')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr("class",'iprbar')
+        .attr("x", function(d) {
+          return xScale(d.Things_Added_to_the_Park)+ 2* (xScale.bandwidth()/4);
+        })
+        .attr("y", function(d) {
+          return yScale(d.in_person_resident);
+        })
+        .attr("width", xScale.bandwidth()/4)
+        .attr('fill', 'yellow')
+        .attr("height", function(d) {
+          return height - margin.bottom - yScale(d.in_person_resident);
+        })
 
     //Interaction
     .on('mouseover', function(d) {
@@ -84,7 +116,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .on('mouseout', function(d) {
       d3.select(this)
         .transition()
-        .style('fill', 'steelblue')
+        .style('fill', 'green')
     })
 
   ;
