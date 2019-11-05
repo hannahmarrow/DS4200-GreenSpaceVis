@@ -65,8 +65,11 @@
       
       Don't delete the closing tag! -->
       <!-- </svg> --> 
+      <p>texstin</p>
       <script src="lib/d3.v5.12.0/d3.min.js"></script>
-      <script id=visualization src="visualization.js"></script>
+      <script class=visualization src="visualization.js"></script>
+
+
       <!-- <script id=testing src="testing2.js"></script> -->
 
     </div>
@@ -101,8 +104,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("/data/Q1/clean_greenspace.csv", function(data) {
-  // if (error) throw error;
+d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
 
   var survey_type = d3.keys(data[0]).filter(function(key) { return key !== Things_Added_to_the_Park; });
 
