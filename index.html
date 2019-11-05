@@ -82,6 +82,8 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
 
 var x0 = d3.scaleBand().rangeRound(["0", width]).padding(0.1);
 
+
+
 var x1 = d3.scaleOrdinal();
 
 var y = d3.scaleLinear()
@@ -106,15 +108,17 @@ var svg = d3.select("body").append("svg")
 
 d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
 
-  var survey_type = d3.keys(data[0]).filter(function(key) { return key !== Things_Added_to_the_Park; });
+  var survey_type = d3.keys(data[0]).filter(function(key) { return key !== "Things_Added_to_the_Park"; });
 
   data.forEach(function(d) {
-    d.response_types = survey_type.map(function(name) { return {name: name, count: +d[name]}; });
+    d.Things_Added_to_the_Park = survey_type.map(function(name) { return {name: name, count: +d[name]}; });
   });
 
   x0.domain(data.map(function(d) { return d.Things_Added_to_the_Park; }));
-  x1.domain(survey_type).rangeRoundBands([0, x0.rangeBand()]);
-  y.domain([0, d3.max(data, function(d) { return d3.max(d.response_types, function(d) { return d.count; }); })]);
+  // x1.domain(survey_type).rangeRoundBands([0, x0.bandwidth()]);
+  x1.domain(survey_type).scaleBand().rangeRound([0, x0.bandwidth()]).padding(0.1);
+
+  y.domain([0, d3.max(data, function(d) { return d3.max(d.Things_Added_to_the_Park, function(d) { return d.count; }); })]);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -131,16 +135,16 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       .style("text-anchor", "end")
       .text("Population");
 
-  var state = svg.selectAll(".state")
+  var Things_Added_to_the_Park = svg.selectAll(".Things_Added_to_the_Park")
       .data(data)
     .enter().append("g")
       .attr("class", "g")
       .attr("transform", function(d) { return "translate(" + x0(d.Things_Added_to_the_Park) + ",0)"; });
 
-  state.selectAll("rect")
-      .data(function(d) { return d.response_types; })
+  Things_Added_to_the_Park.selectAll("rect")
+      .data(function(d) { return d.Things_Added_to_the_Park; })
     .enter().append("rect")
-      .attr("width", x1.rangeBand())
+      .attr("width", x1.bandwidth())
       .attr("x", function(d) { return x1(d.name); })
       .attr("y", function(d) { return y(d.count); })
       .attr("height", function(d) { return height - y(d.count); })
@@ -184,7 +188,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
 
       <h1>Visualization explanation</h1>
       
-      <p><em>final visualization screenshots (PNG imresponse_types), design justifications, UI walk-through, and linked presentation slides.</em></p>
+      <p><em>final visualization screenshots (PNG imThings_Added_to_the_Parks), design justifications, UI walk-through, and linked presentation slides.</em></p>
 
       <h1>Data Analysis</h1>
       <p><em>The data we included was our 4 different CSVs for the different response types: 
@@ -219,7 +223,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       
       <h1>Acknowledgements</h1>
 
-      <p><em>List here where any code, packresponse_types/libraries, text, imresponse_types, designs, etc. that you leverage come from.</em></p>
+      <p><em>List here where any code, packThings_Added_to_the_Parks/libraries, text, imThings_Added_to_the_Parks, designs, etc. that you leverage come from.</em></p>
       
       <ul>
         <li><a href="https://d3js.org/">D3: Data-Driven Documents</a> by Mike Bostock.</li>
