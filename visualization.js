@@ -104,20 +104,20 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
           return height - margin.bottom - yScale(d.in_person_resident);
         })
 
-    //Interaction
-    .on("mouseover", function(d) {
-      d3.select(this)
-        .transition()
-        .delay(200)
-        .duration(1000)
-        .style("fill", "pink")
-    })
+    // //Interaction for later
+    // .on("mouseover", function(d) {
+    //   d3.select(this)
+    //     .transition()
+    //     .delay(200)
+    //     .duration(1000)
+    //     .style("fill", "pink")
+    // })
 
-    .on("mouseout", function(d) {
-      d3.select(this)
-        .transition()
-        .style("fill", "green")
-    })
+    // .on("mouseout", function(d) {
+    //   d3.select(this)
+    //     .transition()
+    //     .style("fill", "green")
+    // })
 
       // Handmade legend
       svg.append("rect").attr("x",1000).attr("y",60).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
