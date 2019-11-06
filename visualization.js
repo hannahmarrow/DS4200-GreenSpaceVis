@@ -15,7 +15,7 @@ var margin = {
     .append('svg')
     .attr('width', width)
     .attr('height', height)
-    .style('background', '#e9f7f2');
+    .style('background', '#ebebeb');
 
 
 //Define data
@@ -67,7 +67,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       return yScale(d.in_person_pedestrian);
     })
     .attr("width", xScale.bandwidth()/4)
-    .attr('fill', 'steelblue')
+    .attr('fill', '#81A4CD')
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.in_person_pedestrian);
     })
@@ -83,7 +83,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
         return yScale(d.online_resident);
       })
       .attr("width", xScale.bandwidth()/4)
-      .attr('fill', 'red')
+      .attr('fill', '#ba1313')
       .attr("height", function(d) {
         return height - margin.bottom - yScale(d.online_resident);
       })
@@ -99,25 +99,33 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
           return yScale(d.in_person_resident);
         })
         .attr("width", xScale.bandwidth()/4)
-        .attr('fill', 'yellow')
+        .attr('fill', '#054A91')
         .attr("height", function(d) {
           return height - margin.bottom - yScale(d.in_person_resident);
         })
 
     //Interaction
-    .on('mouseover', function(d) {
+    .on("mouseover", function(d) {
       d3.select(this)
         .transition()
         .delay(200)
         .duration(1000)
-        .style('fill', 'pink')
+        .style("fill", "pink")
     })
 
-    .on('mouseout', function(d) {
+    .on("mouseout", function(d) {
       d3.select(this)
         .transition()
-        .style('fill', 'green')
+        .style("fill", "green")
     })
+
+      // Handmade legend
+      svg.append("rect").attr("x",1000).attr("y",60).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
+      svg.append("rect").attr("x",1000).attr("y",90).attr("width", 15).attr("height", 15).style("fill", "#ba1313")
+      svg.append("rect").attr("x",1000).attr("y",120).attr("width", 15).attr("height", 15).style("fill", "#054A91")
+      svg.append("text").attr("x", 1020).attr("y", 70).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg.append("text").attr("x", 1020).attr("y", 100).text("Online Resident").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg.append("text").attr("x", 1020).attr("y", 130).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline","middle")
 
   ;
 
