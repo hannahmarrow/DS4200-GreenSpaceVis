@@ -2,7 +2,7 @@ var barwidth = 50;
 var barOffset = 5;
 
 //Generate SVG
-var width = 1200,
+var width = 1100,
   height = 400;
 var margin = {
   top: 40,
@@ -120,12 +120,12 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     // })
 
       // Handmade legend
-      svg.append("rect").attr("x",1000).attr("y",60).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
-      svg.append("rect").attr("x",1000).attr("y",90).attr("width", 15).attr("height", 15).style("fill", "#ba1313")
-      svg.append("rect").attr("x",1000).attr("y",120).attr("width", 15).attr("height", 15).style("fill", "#054A91")
-      svg.append("text").attr("x", 1020).attr("y", 70).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline","middle")
-      svg.append("text").attr("x", 1020).attr("y", 100).text("Online Resident").style("font-size", "15px").attr("alignment-baseline","middle")
-      svg.append("text").attr("x", 1020).attr("y", 130).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg.append("rect").attr("x",800).attr("y",60).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
+      svg.append("rect").attr("x",800).attr("y",90).attr("width", 15).attr("height", 15).style("fill", "#ba1313")
+      svg.append("rect").attr("x",800).attr("y",120).attr("width", 15).attr("height", 15).style("fill", "#054A91")
+      svg.append("text").attr("x", 820).attr("y", 70).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg.append("text").attr("x", 820).attr("y", 100).text("Online Resident").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg.append("text").attr("x", 820).attr("y", 130).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline","middle")
 
   ;
 
