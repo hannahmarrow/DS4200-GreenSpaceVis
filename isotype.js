@@ -1,7 +1,7 @@
 var barwidth = 50;
 var barOffset = 5;
 
-//Generate SVG
+//Generate svg2
 var width = 1100,
   height = 400;
 var margin = {
@@ -11,11 +11,11 @@ var margin = {
   right: 30
 };
 
-  var svg = d3.select('body')
-    .append('svg')
+  var svg2 = d3.select('body')
+    .append('svg2')
     .attr('width', width)
     .attr('height', height)
-    .style('background', '#ebebeb');
+    .style('background', 'red');
 
 
 //Define data
@@ -34,8 +34,8 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .padding(0.5);
 
   //Draw Axes
-  var yAxis = svg.append('g')
-    .attr("transform", `translate(${margin.left},0)`)
+  var yAxis = svg2.append('g')
+    .attr("transform", `translate(${margin.left},30)`)
     .call(d3.axisLeft().scale(yScale))
     //Add label
     .append("text")
@@ -44,7 +44,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .style("stroke", 'black')
     .text("Number of Responses");
 
-  var xAxis = svg.append('g')
+  var xAxis = svg2.append('g')
     .attr("transform", `translate(0,${height-margin.bottom})`)
     .call(d3.axisBottom().scale(xScale))
     //Add label
@@ -55,7 +55,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .text("Things Added\nto Park");
 
   //Draw bars
-  var bar = svg.selectAll('.pedbar')
+  var bar = svg2.selectAll('.pedbar')
     .data(data)
     .enter()
     .append('rect')
@@ -71,7 +71,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.in_person_pedestrian);
     })
-    var bar2 = svg.selectAll('.orbar')
+    var bar2 = svg2.selectAll('.orbar')
       .data(data)
       .enter()
       .append('rect')
@@ -87,7 +87,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("height", function(d) {
         return height - margin.bottom - yScale(d.online_resident);
       })
-      var bar3 = svg.selectAll('.iprbar')
+      var bar3 = svg2.selectAll('.iprbar')
         .data(data)
         .enter()
         .append('rect')
@@ -120,12 +120,12 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     // })
 
       // Handmade legend
-      svg.append("rect").attr("x",800).attr("y",60).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
-      svg.append("rect").attr("x",800).attr("y",90).attr("width", 15).attr("height", 15).style("fill", "#ba1313")
-      svg.append("rect").attr("x",800).attr("y",120).attr("width", 15).attr("height", 15).style("fill", "#054A91")
-      svg.append("text").attr("x", 820).attr("y", 70).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline","middle")
-      svg.append("text").attr("x", 820).attr("y", 100).text("Online Resident").style("font-size", "15px").attr("alignment-baseline","middle")
-      svg.append("text").attr("x", 820).attr("y", 130).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg2.append("rect").attr("x",800).attr("y",60).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
+      svg2.append("rect").attr("x",800).attr("y",90).attr("width", 15).attr("height", 15).style("fill", "#ba1313")
+      svg2.append("rect").attr("x",800).attr("y",120).attr("width", 15).attr("height", 15).style("fill", "#054A91")
+      svg2.append("text").attr("x", 820).attr("y", 70).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg2.append("text").attr("x", 820).attr("y", 100).text("Online Resident").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg2.append("text").attr("x", 820).attr("y", 130).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline","middle")
 
   ;
 
