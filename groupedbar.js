@@ -20,6 +20,7 @@ var margin = {
 
 //Define data
 d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
+  //console.log(data)
 
   // Define Scales
   var yScale = d3.scaleLinear()
@@ -208,12 +209,12 @@ var bar = svg2.selectAll('.pedbar')
        return xScale(d.Things_Added_to_the_Park)+ 2* (xScale.bandwidth()/4);
      })
      .attr("y", function(d) {
-       return yScale(d.in_person_resident);
+       return yScale(d.total_responses);
      })
      .attr("width", xScale.bandwidth()/4)
      .attr('fill', '#054A91')
      .attr("height", function(d) {
-       return height - margin.bottom - yScale(d.in_person_resident);
+       return height - margin.bottom - yScale(d.total_responses);
      })
 
  // //Interaction for later
