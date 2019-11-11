@@ -176,46 +176,13 @@ var bar = svg2.selectAll('.pedbar')
    return xScale(d.Things_Added_to_the_Park);
  })
  .attr("y", function(d) {
-   return yScale(d.in_person_pedestrian);
+   return yScale(d.total_responses);
  })
  .attr("width", xScale.bandwidth()/4)
  .attr('fill', '#81A4CD')
  .attr("height", function(d) {
-   return height - margin.bottom - yScale(d.in_person_pedestrian);
+   return height - margin.bottom - yScale(d.total_responses);
  })
- var bar2 = svg2.selectAll('.orbar')
-   .data(data)
-   .enter()
-   .append('rect')
-   .attr("class",'orbar')
-   .attr("x", function(d) {
-     return xScale(d.Things_Added_to_the_Park)+xScale.bandwidth()/4;
-   })
-   .attr("y", function(d) {
-     return yScale(d.online_resident);
-   })
-   .attr("width", xScale.bandwidth()/4)
-   .attr('fill', '#ba1313')
-   .attr("height", function(d) {
-     return height - margin.bottom - yScale(d.online_resident);
-   })
-   var bar3 = svg2.selectAll('.iprbar')
-     .data(data)
-     .enter()
-     .append('rect')
-     .attr("class",'iprbar')
-     .attr("x", function(d) {
-       return xScale(d.Things_Added_to_the_Park)+ 2* (xScale.bandwidth()/4);
-     })
-     .attr("y", function(d) {
-       return yScale(d.in_person_resident);
-     })
-     .attr("width", xScale.bandwidth()/4)
-     .attr('fill', '#054A91')
-     .attr("height", function(d) {
-       return height - margin.bottom - yScale(d.in_person_resident);
-     })
-
  // //Interaction for later
  // .on("mouseover", function(d) {
  //   d3.select(this)
@@ -233,11 +200,7 @@ var bar = svg2.selectAll('.pedbar')
 
    // Handmade legend
    svg2.append("rect").attr("x",800).attr("y",60).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
-   svg2.append("rect").attr("x",800).attr("y",90).attr("width", 15).attr("height", 15).style("fill", "#ba1313")
-   svg2.append("rect").attr("x",800).attr("y",120).attr("width", 15).attr("height", 15).style("fill", "#054A91")
-   svg2.append("text").attr("x", 820).attr("y", 70).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline","middle")
-   svg2.append("text").attr("x", 820).attr("y", 100).text("Online Resident").style("font-size", "15px").attr("alignment-baseline","middle")
-   svg2.append("text").attr("x", 820).attr("y", 130).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline","middle")
+   svg2.append("text").attr("x", 820).attr("y", 70).text("Total Responses").style("font-size", "15px").attr("alignment-baseline","middle")
 
 ;
 
