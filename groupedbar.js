@@ -131,7 +131,9 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
   ;
 
 
-var svg2 = d3.select('#svg');
+var svg2 = d3.select('#svg')
+.attr('width', width)
+.attr('height', height + 200);
 
 
  // Define Scales
@@ -163,7 +165,7 @@ var xAxis = svg2.append('g')
  //Add label
  .append("text")
  .attr("x", width - 70)
- .attr("y", +20)
+ .attr("y", + 20)
  .style("stroke", 'black')
  .text("Things Added\nto Park");
 
@@ -177,49 +179,13 @@ var bar = svg2.selectAll('.pedbar')
    return xScale(d.Things_Added_to_the_Park);
  })
  .attr("y", function(d) {
-   return yScale(d.total_responses);
+   return yScale(d.total_responses - 4);
  })
  .attr("width", xScale.bandwidth()/4)
  .attr('fill', '#81A4CD')
  .attr("height", function(d) {
    return height - margin.bottom - yScale(d.total_responses);
  })
-<<<<<<< HEAD
-=======
- var bar2 = svg2.selectAll('.orbar')
-   .data(data)
-   .enter()
-   .append('rect')
-   .attr("class",'orbar')
-   .attr("x", function(d) {
-     return xScale(d.Things_Added_to_the_Park)+xScale.bandwidth()/4;
-   })
-   .attr("y", function(d) {
-     return yScale(d.online_resident);
-   })
-   .attr("width", xScale.bandwidth()/4)
-   .attr('fill', '#ba1313')
-   .attr("height", function(d) {
-     return height - margin.bottom - yScale(d.online_resident);
-   })
-   var bar3 = svg2.selectAll('.iprbar')
-     .data(data)
-     .enter()
-     .append('rect')
-     .attr("class",'iprbar')
-     .attr("x", function(d) {
-       return xScale(d.Things_Added_to_the_Park)+ 2* (xScale.bandwidth()/4);
-     })
-     .attr("y", function(d) {
-       return yScale(d.total_responses);
-     })
-     .attr("width", xScale.bandwidth()/4)
-     .attr('fill', '#054A91')
-     .attr("height", function(d) {
-       return height - margin.bottom - yScale(d.total_responses);
-     })
-
->>>>>>> d9eedfbfdfd196de1d50648c5bc8cfe2deb3c131
  // //Interaction for later
  // .on("mouseover", function(d) {
  //   d3.select(this)
