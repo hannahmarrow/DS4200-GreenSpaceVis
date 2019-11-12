@@ -13,7 +13,7 @@ var margin = {
 
   var svg = d3.select('body')
     .append('svg')
-    .attr('width', width)
+    .attr('width', width + 200)
     .attr('height', height)
     .style('background', 'white');
 
@@ -119,15 +119,18 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     //     .transition()
     //     .style("fill", "green")
     // })
-
+      var rectX = 1000;
+      var rectTextX = 1030;
+      var rectY = 60;
+      var rectTextY = 70;
       // Handmade legend
-      svg.append("text").attr("x", 820).attr("y", 40).text("Legend: ").style("font-size", "15px").attr("alignment-baseline","middle")
-      svg.append("rect").attr("x",800).attr("y",60).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
-      svg.append("rect").attr("x",800).attr("y",90).attr("width", 15).attr("height", 15).style("fill", "#ba1313")
-      svg.append("rect").attr("x",800).attr("y",120).attr("width", 15).attr("height", 15).style("fill", "#054A91")
-      svg.append("text").attr("x", 820).attr("y", 70).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline","middle")
-      svg.append("text").attr("x", 820).attr("y", 100).text("Online Resident").style("font-size", "15px").attr("alignment-baseline","middle")
-      svg.append("text").attr("x", 820).attr("y", 130).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg.append("text").attr("x", rectTextX).attr("y", rectTextY - 30).text("Legend: ").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg.append("rect").attr("x",rectX).attr("y",rectY).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
+      svg.append("rect").attr("x",rectX).attr("y",rectY + 30).attr("width", 15).attr("height", 15).style("fill", "#ba1313")
+      svg.append("rect").attr("x",rectX).attr("y",rectY + 60).attr("width", 15).attr("height", 15).style("fill", "#054A91")
+      svg.append("text").attr("x", rectTextX).attr("y", rectTextY).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 30).text("Online Resident").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 60).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline","middle")
 
   ;
 
