@@ -133,12 +133,12 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
 
 var svg2 = d3.select('#svg')
 .attr('width', width)
-.attr('height', height + 200);
+.attr('height', height);
 
 
  // Define Scales
  var yScale = d3.scaleLinear()
- .domain([0, 10])
+ .domain([0, 20])
  .range([height - margin.bottom, margin.top])
 
 var xScale = d3.scaleBand()
@@ -176,10 +176,10 @@ var bar = svg2.selectAll('.pedbar')
  .append('rect')
  .attr("class",'pedbar')
  .attr("x", function(d) {
-   return xScale(d.Things_Added_to_the_Park);
+   return xScale(d.Things_Added_to_the_Park)+xScale.bandwidth() / 3;
  })
  .attr("y", function(d) {
-   return yScale(d.total_responses - 4);
+   return yScale(d.total_responses);
  })
  .attr("width", xScale.bandwidth()/4)
  .attr('fill', '#81A4CD')
