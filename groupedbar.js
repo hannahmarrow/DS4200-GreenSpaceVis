@@ -15,7 +15,7 @@ var margin = {
     .append('svg')
     .attr('width', width)
     .attr('height', height)
-    .style('background', '#ebebeb');
+    .style('background', 'white');
 
 
 //Define data
@@ -135,9 +135,20 @@ var svg2 = d3.select('#svg')
 .attr('width', width)
 .attr('height', height);
 
+// var image = svg2.selectAll('.image')
+//     .data(data)
+
+//   image.enter()
+//     .append("image")
+//       .attr("x", "0")
+//       .attr("y", "0")
+//       .attr("height", "70px")
+//       .attr("width", "70px")
+//       .attr("href", function(d) {return d.images});
+
 
  // Define Scales
- var yScale = d3.scaleLinear()
+ var yScale2 = d3.scaleLinear()
  .domain([0, 20])
  .range([height - margin.bottom, margin.top])
 
@@ -151,13 +162,13 @@ var xScale = d3.scaleBand()
 //Draw Axes
 var yAxis = svg2.append('g')
  .attr("transform", `translate(${margin.left},0)`)
- .call(d3.axisLeft().scale(yScale))
+ .call(d3.axisLeft().scale(yScale2))
  //Add label
  .append("text")
  .attr("y", 30)
  .attr("x", 20)
  .style("stroke", 'black')
- .text("Number of Responses");
+ .text("Number of Responses");  
 
 var xAxis = svg2.append('g')
  .attr("transform", `translate(0,${height-margin.bottom})`)
@@ -167,25 +178,30 @@ var xAxis = svg2.append('g')
  .attr("x", width - 70)
  .attr("y", + 20)
  .style("stroke", 'black')
- .text("Things Added\nto Park");
+ .text("Things Added to Park");
 
-//Draw bars
-var bar = svg2.selectAll('.pedbar')
+//Draw isotypes
+var isotypes = svg2.selectAll('.total')
  .data(data)
  .enter()
- .append('rect')
- .attr("class",'pedbar')
+ .append("image")
+      .attr("href", function(d) {return d.images})
+ .attr("class",'total')
+ //x position of the image
  .attr("x", function(d) {
    return xScale(d.Things_Added_to_the_Park)+xScale.bandwidth() / 3;
  })
+ //y position of the image
  .attr("y", function(d) {
-   return yScale(d.total_responses);
+   return yScale2(d.total_responses * 1.5); // scale the images to be in the correct position
  })
- .attr("width", xScale.bandwidth()/4)
- .attr('fill', '#81A4CD')
+ // width of the image
+ .attr("width", xScale.bandwidth()/3)
  .attr("height", function(d) {
-   return height - margin.bottom - yScale(d.total_responses);
+   // height of the image
+   return (height - margin.bottom - yScale2(d.total_responses));
  })
+
  // //Interaction for later
  // .on("mouseover", function(d) {
  //   d3.select(this)
