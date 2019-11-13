@@ -17,8 +17,8 @@ var margin = {
     .attr('height', height)
     .style('background', 'white');
 // Define the div for the tooltip
-var div = d3.select("body").append("div")	
-    .attr("class", "tooltip")				
+var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
     .style("opacity", 0);
 
 //Define data
@@ -75,17 +75,17 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.in_person_pedestrian);
     })
-    .on("mouseover", function(d) {		
-      div.transition()		
-          .duration(200)		
-          .style("opacity", .9);	
-          div	.html("In-Person Pedestrian:" + "<br/>"  + d.in_person_pedestrian)	
-          .style("left", (d3.event.pageX) + "px")		
-          .style("top", (d3.event.pageY - 28) + "px");	
-      })					
-  .on("mouseout", function(d) {		
-      div.transition()		
-          .duration(500)		
+    .on("mouseover", function(d) {
+      div.transition()
+          .duration(200)
+          .style("opacity", .9);
+          div	.html("In-Person Pedestrian:" + "<br/>"  + d.in_person_pedestrian)
+          .style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 28) + "px");
+      })
+  .on("mouseout", function(d) {
+      div.transition()
+          .duration(500)
           .style("opacity", 0);
   })
     var bar2 = svg.selectAll('.orbar')
@@ -104,17 +104,17 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("height", function(d) {
         return height - margin.bottom - yScale(d.online_resident);
       })
-      .on("mouseover", function(d) {		
-        div.transition()		
-            .duration(200)		
-            .style("opacity", .9);	
-            div	.html("Online Resident:" + "<br/>"  + d.online_resident)	
-            .style("left", (d3.event.pageX) + "px")		
-            .style("top", (d3.event.pageY - 28) + "px");	
-        })					
-    .on("mouseout", function(d) {		
-        div.transition()		
-            .duration(500)		
+      .on("mouseover", function(d) {
+        div.transition()
+            .duration(200)
+            .style("opacity", .9);
+            div	.html("Online Resident:" + "<br/>"  + d.online_resident)
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+    .on("mouseout", function(d) {
+        div.transition()
+            .duration(500)
             .style("opacity", 0);
     })
       var bar3 = svg.selectAll('.iprbar')
@@ -133,20 +133,20 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
         .attr("height", function(d) {
           return height - margin.bottom - yScale(d.in_person_resident);
         })
-        .on("mouseover", function(d) {		
-          div.transition()		
-              .duration(200)		
-              .style("opacity", .9);	
-              div	.html("In-Person Resident:" + "<br/>"  + d.in_person_resident)	
-              .style("left", (d3.event.pageX) + "px")		
-              .style("top", (d3.event.pageY - 28) + "px");	
-          })					
-      .on("mouseout", function(d) {		
-          div.transition()		
-              .duration(500)		
+        .on("mouseover", function(d) {
+          div.transition()
+              .duration(200)
+              .style("opacity", .9);
+              div	.html("In-Person Resident:" + "<br/>"  + d.in_person_resident)
+              .style("left", (d3.event.pageX) + "px")
+              .style("top", (d3.event.pageY - 28) + "px");
+          })
+      .on("mouseout", function(d) {
+          div.transition()
+              .duration(500)
               .style("opacity", 0);
       })
-    
+
 
     //Interaction for later
     // .on("mouseover", function(d) {
@@ -215,7 +215,7 @@ var yAxis = svg2.append('g')
  .attr("y", 30)
  .attr("x", 20)
  .style("stroke", 'black')
- .text("Number of Responses");  
+ .text("Number of Responses");
 
 var xAxis = svg2.append('g')
  .attr("transform", `translate(0,${height-margin.bottom})`)
@@ -240,6 +240,17 @@ var isotypes = svg2.selectAll('.total')
  })
  //y position of the image
  .attr("y", function(d) {
+   var start = 0;
+   var total = parseInt(d.total_responses,10);
+   console.log(d.Things_Added_to_the_Park)
+   // console.log("total " + total)
+   for (i = 0; i < total; i++) {
+     start += 5
+     // console.log("updated " + start)
+     console.log("yscale" + yScale2(start * 1.5))
+     // return yScale2(start * 1.5)
+   }
+    // console.log("y " + yScale2(d.total_responses * 1.5))
    return yScale2(d.total_responses * 1.5); // scale the images to be in the correct position
  })
  // width of the image
@@ -248,17 +259,17 @@ var isotypes = svg2.selectAll('.total')
    // height of the image
    return (height - margin.bottom - yScale2(d.total_responses));
  })
- .on("mouseover", function(d) {		
-  div.transition()		
-      .duration(200)		
-      .style("opacity", .9);	
-      div	.html(d.Things_Added_to_the_Park + ":" + "<br/>"  + d.total_responses)	
-      .style("left", (d3.event.pageX) + "px")		
-      .style("top", (d3.event.pageY - 28) + "px");	
-  })					
-.on("mouseout", function(d) {		
-  div.transition()		
-      .duration(500)		
+ .on("mouseover", function(d) {
+  div.transition()
+      .duration(200)
+      .style("opacity", .9);
+      div	.html(d.Things_Added_to_the_Park + ":" + "<br/>"  + d.total_responses)
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 28) + "px");
+  })
+.on("mouseout", function(d) {
+  div.transition()
+      .duration(500)
       .style("opacity", 0);
 })
   //Interaction for later
@@ -269,7 +280,7 @@ var isotypes = svg2.selectAll('.total')
   //     .duration(1000)
   //     .style("fill", "pink")
   // })
- 
+
   // .on("mouseout", function(d) {
   //   d3.select(this)
   //     .transition()
