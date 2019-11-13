@@ -16,7 +16,10 @@ var margin = {
     .attr('width', width + 200)
     .attr('height', height)
     .style('background', 'white');
-
+// Define the div for the tooltip
+var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
 
 //Define data
 d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
@@ -72,6 +75,19 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.in_person_pedestrian);
     })
+    .on("mouseover", function(d) {		
+      div.transition()		
+          .duration(200)		
+          .style("opacity", .9);	
+          div	.html("In-Person Pedestrian:" + "<br/>"  + d.in_person_pedestrian)	
+          .style("left", (d3.event.pageX) + "px")		
+          .style("top", (d3.event.pageY - 28) + "px");	
+      })					
+  .on("mouseout", function(d) {		
+      div.transition()		
+          .duration(500)		
+          .style("opacity", 0);
+  })
     var bar2 = svg.selectAll('.orbar')
       .data(data)
       .enter()
@@ -88,6 +104,19 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("height", function(d) {
         return height - margin.bottom - yScale(d.online_resident);
       })
+      .on("mouseover", function(d) {		
+        div.transition()		
+            .duration(200)		
+            .style("opacity", .9);	
+            div	.html("Online Resident:" + "<br/>"  + d.online_resident)	
+            .style("left", (d3.event.pageX) + "px")		
+            .style("top", (d3.event.pageY - 28) + "px");	
+        })					
+    .on("mouseout", function(d) {		
+        div.transition()		
+            .duration(500)		
+            .style("opacity", 0);
+    })
       var bar3 = svg.selectAll('.iprbar')
         .data(data)
         .enter()
@@ -104,8 +133,22 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
         .attr("height", function(d) {
           return height - margin.bottom - yScale(d.in_person_resident);
         })
+        .on("mouseover", function(d) {		
+          div.transition()		
+              .duration(200)		
+              .style("opacity", .9);	
+              div	.html("In-Person Resident:" + "<br/>"  + d.in_person_resident)	
+              .style("left", (d3.event.pageX) + "px")		
+              .style("top", (d3.event.pageY - 28) + "px");	
+          })					
+      .on("mouseout", function(d) {		
+          div.transition()		
+              .duration(500)		
+              .style("opacity", 0);
+      })
+    
 
-    // //Interaction for later
+    //Interaction for later
     // .on("mouseover", function(d) {
     //   d3.select(this)
     //     .transition()
@@ -205,21 +248,33 @@ var isotypes = svg2.selectAll('.total')
    // height of the image
    return (height - margin.bottom - yScale2(d.total_responses));
  })
-
- // //Interaction for later
- // .on("mouseover", function(d) {
- //   d3.select(this)
- //     .transition()
- //     .delay(200)
- //     .duration(1000)
- //     .style("fill", "pink")
- // })
-
- // .on("mouseout", function(d) {
- //   d3.select(this)
- //     .transition()
- //     .style("fill", "green")
- // })
+ .on("mouseover", function(d) {		
+  div.transition()		
+      .duration(200)		
+      .style("opacity", .9);	
+      div	.html(d.Things_Added_to_the_Park + ":" + "<br/>"  + d.total_responses)	
+      .style("left", (d3.event.pageX) + "px")		
+      .style("top", (d3.event.pageY - 28) + "px");	
+  })					
+.on("mouseout", function(d) {		
+  div.transition()		
+      .duration(500)		
+      .style("opacity", 0);
+})
+  //Interaction for later
+  // .on("mouseover", function(d) {
+  //   d3.select(this)
+  //     .transition()
+  //     .delay(200)
+  //     .duration(1000)
+  //     .style("fill", "pink")
+  // })
+ 
+  // .on("mouseout", function(d) {
+  //   d3.select(this)
+  //     .transition()
+  //     .style("fill", "green")
+  // })
 
    // Handmade legends
    var imageY = 30;
