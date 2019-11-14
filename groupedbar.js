@@ -311,5 +311,39 @@ var isotypes = svg2.selectAll('.total')
 
 
 
+var dataset = [{
+  image: "http://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/256/22215-dog-icon.png",
+  data: 5
+}, {
+  image: "http://www.ucdmc.ucdavis.edu/global/images/icons/instagram-32x32.png",
+  data: 3
+}, {
+  image: "http://www.axadledirect.com/assets/images/icons/share/32x32/google.png",
+  data: 8
+}];
+
+var svg3 = d3.select('#svg')
+.attr('width', 1300)
+.attr('height', 400);
+
+var groups = svg.selectAll("foo")
+    .data(dataset)
+    .enter()
+    .append("g")
+    /* attr('y', function(d){ return (height - parseInt(y(d.percent))); }) */
+    .attr("transform", (d, i) => "translate(" + (10 + i * 40) +"," +  (30 - margin.bottom) + ")");
+
+var images = groups.selectAll("bar")
+    .data(d => d3.range(d.data))
+    .enter()
+    .append("svg:image")
+    .attr("width", 35)
+    .attr("y", function(d, i) {
+        return (i * 35);
+    })
+    .attr("xlink:href", function(d) {
+        return d3.select(this.parentNode).datum().image
+    });
+
 
 });
