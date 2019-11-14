@@ -3,7 +3,7 @@ var barOffset = 5;
 
 //Generate SVG
 var width = 1100,
-  height = 400;
+  height = 1000;
 var margin = {
   top: 40,
   bottom: 30,
@@ -231,47 +231,47 @@ var xAxis = svg2.append('g')
 var isotypes = svg2.selectAll('.total')
  .data(data)
  .enter()
- .append("image")
-      .attr("href", function(d) {return d.images})
- .attr("class",'total')
+//  .append("image")
+//       .attr("href", function(d) {return d.images})
+//  .attr("class",'total')
  //x position of the image
- .attr("x", function(d) {
-   return xScale(d.Things_Added_to_the_Park)+xScale.bandwidth() / 3;
- })
- //y position of the image
- .attr("y", function(d) {
-   var start = 0;
-   var total = parseInt(d.total_responses,10);
-   console.log(d.Things_Added_to_the_Park)
-   // console.log("total " + total)
-   for (i = 0; i < total; i++) {
-     start += 5
-     // console.log("updated " + start)
-     console.log("yscale" + yScale2(start * 1.5))
-     // return yScale2(start * 1.5)
-   }
-    // console.log("y " + yScale2(d.total_responses * 1.5))
-   return yScale2(d.total_responses * 1.5); // scale the images to be in the correct position
- })
- // width of the image
- .attr("width", xScale.bandwidth()/3)
- .attr("height", function(d) {
-   // height of the image
-   return (height - margin.bottom - yScale2(d.total_responses));
- })
- .on("mouseover", function(d) {
-  div.transition()
-      .duration(200)
-      .style("opacity", .9);
-      div	.html(d.Things_Added_to_the_Park + ":" + "<br/>"  + d.total_responses)
-      .style("left", (d3.event.pageX) + "px")
-      .style("top", (d3.event.pageY - 28) + "px");
-  })
-.on("mouseout", function(d) {
-  div.transition()
-      .duration(500)
-      .style("opacity", 0);
-})
+//  .attr("x", function(d) {
+//    return xScale(d.Things_Added_to_the_Park)+xScale.bandwidth() / 3;
+//  })
+//  //y position of the image
+//  .attr("y", function(d) {
+//    var start = 0;
+//    var total = parseInt(d.total_responses,10);
+//    console.log(d.Things_Added_to_the_Park)
+//    // console.log("total " + total)
+//    for (i = 0; i < total; i++) {
+//      start += 5
+//      // console.log("updated " + start)
+//      console.log("yscale" + yScale2(start * 1.5))
+//      // return yScale2(start * 1.5)
+//    }
+//     // console.log("y " + yScale2(d.total_responses * 1.5))
+//    return yScale2(d.total_responses * 1.5); // scale the images to be in the correct position
+//  })
+//  // width of the image
+//  .attr("width", xScale.bandwidth()/3)
+//  .attr("height", function(d) {
+//    // height of the image
+//    return (height - margin.bottom - yScale2(d.total_responses));
+// //  })
+//  .on("mouseover", function(d) {
+//   div.transition()
+//       .duration(200)
+//       .style("opacity", .9);
+//       div	.html(d.Things_Added_to_the_Park + ":" + "<br/>"  + d.total_responses)
+//       .style("left", (d3.event.pageX) + "px")
+//       .style("top", (d3.event.pageY - 28) + "px");
+//   })
+// .on("mouseout", function(d) {
+//   div.transition()
+//       .duration(500)
+//       .style("opacity", 0);
+// })
   //Interaction for later
   // .on("mouseover", function(d) {
   //   d3.select(this)
@@ -312,38 +312,64 @@ var isotypes = svg2.selectAll('.total')
 
 
 var dataset = [{
-  image: "http://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/256/22215-dog-icon.png",
+  image: "/images/bench.png",
   data: 5
 }, {
-  image: "http://www.ucdmc.ucdavis.edu/global/images/icons/instagram-32x32.png",
-  data: 3
-}, {
-  image: "http://www.axadledirect.com/assets/images/icons/share/32x32/google.png",
+  image: "/images/tree.png",
+  data: 15
+}, 
+{
+  image: "/images/art.png",
+  data: 13
+},
+{
+  image: "/images/play.png",
+  data: 13
+},
+{
+  image: "/images/fountain.png",
   data: 8
-}];
+},
+{
+  image: "/images/other.png",
+  data: 7
+}
+];
 
-var svg3 = d3.select('#svg')
-.attr('width', 1300)
-.attr('height', 400);
 
-var groups = svg.selectAll("foo")
+var groups = svg2.selectAll("foo")
     .data(dataset)
     .enter()
     .append("g")
-    /* attr('y', function(d){ return (height - parseInt(y(d.percent))); }) */
-    .attr("transform", (d, i) => "translate(" + (10 + i * 40) +"," +  (30 - margin.bottom) + ")");
+    .attr("transform", (d, i) => "translate(" + (190 + i * 150) +"," +  yScale2(19) + ")")
+    .on("mouseover", function(dataset) {
+      div.transition()
+          .duration(200)
+          .style("opacity", .9);
+          div	.html("Total:" + "<br/>"  + dataset.data)
+          .style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 28) + "px");
+      })
+  .on("mouseout", function(d) {
+      div.transition()
+          .duration(500)
+          .style("opacity", 0);
+  });
+;
 
 var images = groups.selectAll("bar")
     .data(d => d3.range(d.data))
     .enter()
     .append("svg:image")
-    .attr("width", 35)
+    .attr("width", 45)
+    .attr("height", yScale2(19)/2)
     .attr("y", function(d, i) {
-        return (i * 35);
+        return height - (i * 48) - margin.bottom * 5.5;
     })
     .attr("xlink:href", function(d) {
+      console.log("d.data " + dataset)
+    console.log("d " + d)
+    console.log("d3.range " + d3.range(d.data))
         return d3.select(this.parentNode).datum().image
-    });
-
-
+    })
 });
