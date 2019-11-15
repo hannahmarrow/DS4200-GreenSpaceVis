@@ -10,11 +10,13 @@ var margin = {
   left: 100,
   right: 30
 };
-//
-// var svg2 = d3.select('#svg')
-//   .attr('width', width + 200)
-//   .attr('height', height);
-//
+
+//Color Variables
+var in_person_resident_color = '#054A91';
+var in_person_pedestrian_color = "#81A4CD";
+var online_resident_color = "#804ba3";
+var highlight_color = "yellow";
+
 var svg = d3.select('body')
   .append('svg')
   .attr('width', width + 200)
@@ -27,7 +29,6 @@ var div = d3.select("body").append("div")
 
 //Define data
 d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
-  //console.log(data)
 
   // Define Scales
   var yScale = d3.scaleLinear()
@@ -86,12 +87,12 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       div.html("In-Person Pedestrian:" + "<br/>" + d.in_person_pedestrian)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
-      // change color to pink when mouse over
+      // change color of outline to highlight when mouse over
       d3.select(this)
         .transition()
         .delay(100)
         .duration(100)
-        .style("stroke", "yellow")
+        .style("stroke", highlight_color)
         .style("stroke-width", "5");
 
     })
@@ -102,7 +103,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       // on mouseout - change color back to original
       d3.select(this)
         .transition()
-        .style("stroke", "#81A4CD")
+        .style("stroke", in_person_pedestrian_color)
         .style("stroke-width", "0");
     })
   var bar2 = svg.selectAll('.orbar')
@@ -128,12 +129,12 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       div.html("Online Resident:" + "<br/>" + d.online_resident)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
-      // change color to pink when mouse over
+      // change color of outline to highlight when mouse over
       d3.select(this)
         .transition()
         .delay(100)
         .duration(100)
-        .style("stroke", "yellow")
+        .style("stroke", highlight_color)
         .style("stroke-width", "5");
     })
     .on("mouseout", function(d) {
@@ -143,7 +144,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       // on mouseout - change color back to original
       d3.select(this)
         .transition()
-        .style("stroke", "#804ba3")
+        .style("stroke", online_resident_color)
         .style("stroke-width", "0");
     })
   var bar3 = svg.selectAll('.iprbar')
@@ -158,7 +159,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       return yScale(d.in_person_resident);
     })
     .attr("width", xScale.bandwidth() / 4)
-    .attr('fill', '#054A91')
+    .attr('fill', in_person_resident_color)
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.in_person_resident);
     })
@@ -169,12 +170,12 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       div.html("In-Person Resident:" + "<br/>" + d.in_person_resident)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
-      // change color to pink when mouse over
+      // change color of outline to highlight when mouse over
       d3.select(this)
         .transition()
         .delay(100)
         .duration(100)
-        .style("stroke", "yellow")
+        .style("stroke", highlight_color)
         .style("stroke-width", "5");
     })
     .on("mouseout", function(d) {
@@ -184,7 +185,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       // on mouseout - change color back to original
       d3.select(this)
         .transition()
-        .style("stroke", "#054A91")
+        .style("stroke", in_person_resident_color)
         .style("stroke-width", "0");
     })
 
@@ -195,12 +196,12 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
   var rectTextY = 70;
   // Handmade legend
   svg.append("text").attr("x", rectTextX).attr("y", rectTextY - 30).text("Legend: ").style("font-size", "15px").attr("alignment-baseline", "middle")
-  //in person square
-  svg.append("rect").attr("x", rectX).attr("y", rectY).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
+  //in person resident square
+  svg.append("rect").attr("x", rectX).attr("y", rectY).attr("width", 15).attr("height", 15).style("fill", in_person_resident_color)
   // online resident square
-  svg.append("rect").attr("x", rectX).attr("y", rectY + 30).attr("width", 15).attr("height", 15).style("fill", "#804ba3")
+  svg.append("rect").attr("x", rectX).attr("y", rectY + 30).attr("width", 15).attr("height", 15).style("fill", online_resident_color)
   // in person pedestrian square
-  svg.append("rect").attr("x", rectX).attr("y", rectY + 60).attr("width", 15).attr("height", 15).style("fill", "#054A91")
+  svg.append("rect").attr("x", rectX).attr("y", rectY + 60).attr("width", 15).attr("height", 15).style("fill", in_person_pedestrian_color)
   // in person pedestrian text
   svg.append("text").attr("x", rectTextX).attr("y", rectTextY).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline", "middle")
   // online resident text
