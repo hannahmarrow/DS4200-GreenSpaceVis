@@ -85,8 +85,8 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
       // change color to pink when mouse over
       d3.select(this)
         .transition()
-        .delay(200)
-        .duration(1000)
+        .delay(100)
+        .duration(100)
         .style("fill", "pink");
 
     })
@@ -125,8 +125,8 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
       // change color to pink when mouse over
       d3.select(this)
         .transition()
-        .delay(200)
-        .duration(1000)
+        .delay(100)
+        .duration(100)
         .style("fill", "pink");
     })
     .on("mouseout", function (d) {
@@ -164,8 +164,8 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
       // change color to pink when mouse over
       d3.select(this)
         .transition()
-        .delay(200)
-        .duration(1000)
+        .delay(100)
+        .duration(100)
         .style("fill", "pink");
     })
     .on("mouseout", function (d) {
