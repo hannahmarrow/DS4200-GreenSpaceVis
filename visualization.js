@@ -257,17 +257,17 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     var imageX = 1000;
     var textX = 1030;
     svg2.append("text").attr("x", textX).attr("y", startingTextY - 30).text("Legend: ").style("font-size", "15px").attr("alignment-baseline", "middle")
-    svg2.append("image").attr("href", "/images/bench.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY)
+    svg2.append("image").attr("href", "images/bench.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY)
     svg2.append("text").attr("x", textX).attr("y", startingTextY).text("Rest Areas (benches, etc.) (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
-    svg2.append("image").attr("href", "/images/tree.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 30)
+    svg2.append("image").attr("href", "images/tree.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 30)
     svg2.append("text").attr("x", textX).attr("y", startingTextY + 30).text("Trees/Plants (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
-    svg2.append("image").attr("href", "/images/art.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 60)
+    svg2.append("image").attr("href", "images/art.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 60)
     svg2.append("text").attr("x", textX).attr("y", startingTextY + 60).text("Art Installations (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
-    svg2.append("image").attr("href", "/images/play.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 90)
+    svg2.append("image").attr("href", "images/play.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 90)
     svg2.append("text").attr("x", textX).attr("y", startingTextY + 90).text("Play Area for Kids (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
-    svg2.append("image").attr("href", "/images/fountain.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 120)
+    svg2.append("image").attr("href", "images/fountain.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 120)
     svg2.append("text").attr("x", textX).attr("y", startingTextY + 120).text("Fountains (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
-    svg2.append("image").attr("href", "/images/other.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 150)
+    svg2.append("image").attr("href", "images/other.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 150)
     svg2.append("text").attr("x", textX).attr("y", startingTextY + 150).text("Other (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
 
     ;

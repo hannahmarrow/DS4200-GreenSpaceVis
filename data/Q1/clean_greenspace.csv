@@ -1,7 +1,7 @@
 Things_Added_to_the_Park,in_person_pedestrian,in_person_resident,online_resident,total_responses,images
-Rest Areas(benches etc.),0,1,4,5,"/images/bench.png"
-Trees/Plants,4,2,9,15,"/images/tree.png"
-Public art installations,2,3,8,13,"/images/art.png"
-Play area for kids,3,2,8,13,"/images/play.png"
-Fountains,2,1,5,8,"/images/fountain.png"
-Other,2,0,5,7,"/images/other.png"
+Rest Areas(benches etc.),0,1,4,5,"images/bench.png"
+Trees/Plants,4,2,9,15,"images/tree.png"
+Public art installations,2,3,8,13,"images/art.png"
+Play area for kids,3,2,8,13,"images/play.png"
+Fountains,2,1,5,8,"images/fountain.png"
+Other,2,0,5,7,"images/other.png"
