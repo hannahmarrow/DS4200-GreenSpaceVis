@@ -309,48 +309,20 @@ var isotypes = svg2.selectAll('.total')
 ;
 
 
-
-
-var dataset = [{
-  image: "/images/bench.png",
-  data: 5
-}, {
-  image: "/images/tree.png",
-  data: 15
-}, 
-{
-  image: "/images/art.png",
-  data: 13
-},
-{
-  image: "/images/play.png",
-  data: 13
-},
-{
-  image: "/images/fountain.png",
-  data: 8
-},
-{
-  image: "/images/other.png",
-  data: 7
-}
-];
-
-
 var groups = svg2.selectAll("foo")
-    .data(dataset)
+    .data(data)
     .enter()
     .append("g")
-    .attr("transform", (d, i) => "translate(" + (190 + i * 150) +"," +  yScale2(19) + ")")
-    .on("mouseover", function(dataset) {
+    .attr("transform", (data, i) => "translate(" + (190 + i * 150) +"," +  yScale2(19) + ")")
+    .on("mouseover", function(data) {
       div.transition()
           .duration(200)
           .style("opacity", .9);
-          div	.html("Total:" + "<br/>"  + dataset.data)
+          div	.html("Total:" + "<br/>"  + data.total_responses)
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
       })
-  .on("mouseout", function(d) {
+  .on("mouseout", function(data) {
       div.transition()
           .duration(500)
           .style("opacity", 0);
@@ -358,18 +330,15 @@ var groups = svg2.selectAll("foo")
 ;
 
 var images = groups.selectAll("bar")
-    .data(d => d3.range(d.data))
+    .data(data => d3.range(parseInt(data.total_responses, 10)))
     .enter()
     .append("svg:image")
     .attr("width", 45)
     .attr("height", yScale2(19)/2)
-    .attr("y", function(d, i) {
+    .attr("y", function(data, i) {
         return height - (i * 48) - margin.bottom * 5.5;
     })
-    .attr("xlink:href", function(d) {
-      console.log("d.data " + dataset)
-    console.log("d " + d)
-    console.log("d3.range " + d3.range(d.data))
-        return d3.select(this.parentNode).datum().image
+    .attr("xlink:href", function(data) {
+        return d3.select(this.parentNode).datum().images
     })
 });
