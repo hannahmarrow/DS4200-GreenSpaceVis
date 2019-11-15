@@ -284,11 +284,29 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
         div.html("Total:" + "<br/>" + data.total_responses)
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
+          d3.select('.orbar')
+          .style("stroke", "yellow")
+          .style("stroke-width", "5");
+          d3.select('.iprbar')
+          .style("stroke", "yellow")
+          .style("stroke-width", "5");
+          d3.select('.pedbar')
+          .style("stroke", "yellow")
+          .style("stroke-width", "5")
       })
       .on("mouseout", function(data) {
         div.transition()
           .duration(500)
           .style("opacity", 0);
+          d3.select('.iprbar')
+          .style("stroke", "#054A91")
+          .style("stroke-width", "0");
+          d3.select('.orbar')
+          .style("stroke", "#054A91")
+          .style("stroke-width", "0");
+          d3.select('.pedbar')
+          .style("stroke", "#054A91")
+          .style("stroke-width", "0");
       });
 
     var images = groups.selectAll("bar")
