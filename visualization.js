@@ -68,7 +68,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .data(data)
     .enter()
     .append('rect')
-    .attr("class", 'pedbar')
+    .attr("class", (data, i) => "category" + i)
     .attr("x", function(d) {
       return xScale(d.Things_Added_to_the_Park);
     })
@@ -110,7 +110,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .data(data)
     .enter()
     .append('rect')
-    .attr("class", 'orbar')
+    .attr("class", (data, i) => "category" + i)
     .attr("x", function(d) {
       return xScale(d.Things_Added_to_the_Park) + xScale.bandwidth() / 4;
     })
@@ -151,7 +151,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
     .data(data)
     .enter()
     .append('rect')
-    .attr("class", 'iprbar')
+    .attr("class", (data, i) => "category" + i)
     .attr("x", function(d) {
       return xScale(d.Things_Added_to_the_Park) + 2 * (xScale.bandwidth() / 4);
     })
@@ -278,36 +278,27 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       .enter()
       .append("g")
       .attr("transform", (data, i) => "translate(" + (190 + i * 150) + "," + yScale2(19) + ")")
-      .on("mouseover", function(data) {
+      .attr("class", (data, i) => "bar" + i)
+      .on("mouseover", function(data, i) {
         div.transition()
           .duration(200)
           .style("opacity", .9);
         div.html("Total:" + "<br/>" + data.total_responses)
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
-          d3.select('.orbar')
+          d3.selectAll(".category"+ i)
           .style("stroke", highlight_color)
           .style("stroke-width", "5");
-          d3.select('.iprbar')
-          .style("stroke", highlight_color)
-          .style("stroke-width", "5");
-          d3.select('.pedbar')
-          .style("stroke", highlight_color)
-          .style("stroke-width", "5")
+
       })
-      .on("mouseout", function(data) {
+      .on("mouseout", function(data, i) {
         div.transition()
           .duration(500)
           .style("opacity", 0);
-          d3.selectAll('.iprbar')
+          d3.selectAll(".category" + i)
           .style("stroke", in_person_resident_color)
           .style("stroke-width", "0");
-          d3.selectAll('.orbar')
-          .style("stroke", online_resident_color)
-          .style("stroke-width", "0");
-          d3.selectAll('.pedbar')
-          .style("stroke", in_person_pedestrian_color)
-          .style("stroke-width", "0");
+          console.log(".category" + i)
       });
 
     var images = groups.selectAll("bar")
@@ -322,4 +313,6 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("xlink:href", function(data) {
         return d3.select(this.parentNode).datum().images
       })
+
+
 });
