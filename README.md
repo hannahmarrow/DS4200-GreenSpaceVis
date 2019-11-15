@@ -4,7 +4,7 @@ This template will help you get started with your project. Please look through a
 
 ## The Associated GitHub Pages Website
 
-This website is served automatically from the default `gh-pages` branch at northeastern-ds-4200-f19.github.io/project-team-5-green-space/
+This website is served automatically from the default `gh-pages` branch at [northeastern-ds-4200-f19.github.io/project-team-5-green-space/](northeastern-ds-4200-f19.github.io/project-team-5-green-space/)
 
 ## Setup
 
