@@ -28,7 +28,7 @@ var div = d3.select("body").append("div")
   .style("opacity", 0);
 
 //Define data
-d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
+d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
 
   // Define Scales
   var yScale = d3.scaleLinear()
@@ -298,7 +298,6 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
           d3.selectAll(".category" + i)
           .style("stroke", in_person_resident_color)
           .style("stroke-width", "0");
-          console.log(".category" + i)
       });
 
     var images = groups.selectAll("bar")
