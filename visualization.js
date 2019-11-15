@@ -299,13 +299,13 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function(data) {
         div.transition()
           .duration(500)
           .style("opacity", 0);
-          d3.select('.iprbar')
+          d3.selectAll('.iprbar')
           .style("stroke", in_person_resident_color)
           .style("stroke-width", "0");
-          d3.select('.orbar')
+          d3.selectAll('.orbar')
           .style("stroke", online_resident_color)
           .style("stroke-width", "0");
-          d3.select('.pedbar')
+          d3.selectAll('.pedbar')
           .style("stroke", in_person_pedestrian_color)
           .style("stroke-width", "0");
       });
