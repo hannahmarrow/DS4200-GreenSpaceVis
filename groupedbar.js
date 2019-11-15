@@ -87,7 +87,8 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
         .transition()
         .delay(100)
         .duration(100)
-        .style("fill", "pink");
+        .style("stroke", "yellow")
+        .style("stroke-width", "5");
 
     })
     .on("mouseout", function (d) {
@@ -97,7 +98,8 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
       // on mouseout - change color back to original
       d3.select(this)
         .transition()
-        .style("fill", "#81A4CD");
+        .style("stroke", "#81A4CD")
+        .style("stroke-width", "0");
     })
   var bar2 = svg.selectAll('.orbar')
     .data(data)
@@ -111,7 +113,7 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
       return yScale(d.online_resident);
     })
     .attr("width", xScale.bandwidth() / 4)
-    .attr('fill', '#ba1313')
+    .attr('fill', '#804ba3')
     .attr("height", function (d) {
       return height - margin.bottom - yScale(d.online_resident);
     })
@@ -127,7 +129,8 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
         .transition()
         .delay(100)
         .duration(100)
-        .style("fill", "pink");
+        .style("stroke", "yellow")
+        .style("stroke-width", "5");
     })
     .on("mouseout", function (d) {
       div.transition()
@@ -136,7 +139,8 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
       // on mouseout - change color back to original
       d3.select(this)
         .transition()
-        .style("fill", "#ba1313");
+        .style("stroke", "#804ba3")
+        .style("stroke-width", "0");
     })
   var bar3 = svg.selectAll('.iprbar')
     .data(data)
@@ -166,7 +170,8 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
         .transition()
         .delay(100)
         .duration(100)
-        .style("fill", "pink");
+        .style("stroke", "yellow")
+        .style("stroke-width", "5");
     })
     .on("mouseout", function (d) {
       div.transition()
@@ -175,7 +180,8 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
       // on mouseout - change color back to original
       d3.select(this)
         .transition()
-        .style("fill", "#054A91");
+        .style("stroke", "#054A91")
+        .style("stroke-width", "0");
     })
 
 
@@ -185,13 +191,18 @@ d3.csv("/data/Q1/clean_greenspace.csv").then(function (data) {
   var rectTextY = 70;
   // Handmade legend
   svg.append("text").attr("x", rectTextX).attr("y", rectTextY - 30).text("Legend: ").style("font-size", "15px").attr("alignment-baseline", "middle")
+  //in person square
   svg.append("rect").attr("x", rectX).attr("y", rectY).attr("width", 15).attr("height", 15).style("fill", "#81A4CD")
-  svg.append("rect").attr("x", rectX).attr("y", rectY + 30).attr("width", 15).attr("height", 15).style("fill", "#ba1313")
+  // online resident square
+  svg.append("rect").attr("x", rectX).attr("y", rectY + 30).attr("width", 15).attr("height", 15).style("fill", "#804ba3")
+  // in person pedestrian square
   svg.append("rect").attr("x", rectX).attr("y", rectY + 60).attr("width", 15).attr("height", 15).style("fill", "#054A91")
+  // in person pedestrian text
   svg.append("text").attr("x", rectTextX).attr("y", rectTextY).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline", "middle")
+  // online resident text
   svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 30).text("Online Resident").style("font-size", "15px").attr("alignment-baseline", "middle")
+  // in person resident text
   svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 60).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline", "middle")
-
     ;
 
 
