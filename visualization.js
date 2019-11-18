@@ -17,7 +17,7 @@ var in_person_pedestrian_color = "#81A4CD";
 var online_resident_color = "#804ba3";
 var highlight_color = "yellow";
 
-var svg = d3.select('body')
+var svg = d3.select('#group')
   .append('svg')
   .attr('width', width + 200)
   .attr('height', height)
@@ -214,6 +214,9 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr('width', width + 200)
       .attr('height', height);
 
+      svg2.select(".x.axis")
+      .selectAll("text")
+      .style("font-size", "15px");
     // Define Scales
     var yScale2 = d3.scaleLinear()
       .domain([0, 20])
@@ -240,6 +243,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     var xAxis = svg2.append('g')
       .attr("transform", `translate(0,${height - margin.bottom})`)
       .call(d3.axisBottom().scale(xScale))
+      .style('font-size', "15px")
       //Add label
       .append("text")
       .attr("x", width - 70)
