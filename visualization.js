@@ -12,16 +12,17 @@ var margin = {
 };
 
 //Color Variables
-var in_person_resident_color = '#054A91';
-var in_person_pedestrian_color = "#81A4CD";
-var online_resident_color = "#804ba3";
-var highlight_color = "yellow";
+var online_resident_color  = "#81A4CD" ;
+var in_person_resident_color =  '#054A91';
+var in_person_pedestrian_color = "#804ba3";
+var highlight_color = "#e0ba51";
 
 var svg = d3.select('#group')
   .append('svg')
   .attr('width', width + 200)
   .attr('height', height)
   .style('background', 'white');
+
 // Define the div for the tooltip
 var div = d3.select("body").append("div")
   .attr("class", "tooltip")
@@ -76,7 +77,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       return yScale(d.in_person_pedestrian);
     })
     .attr("width", xScale.bandwidth() / 4)
-    .attr('fill', '#81A4CD')
+    .attr('fill', in_person_pedestrian_color)
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.in_person_pedestrian);
     })
@@ -87,13 +88,20 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       div.html("In-Person Pedestrian:" + "<br/>" + d.in_person_pedestrian)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
-      // change color of outline to highlight when mouse over
+      // mouse over actions
       d3.select(this)
+      //change color of outline of in person pedestrian bar to highlight when mouse over
         .transition()
         .delay(100)
         .duration(100)
         .style("stroke", highlight_color)
         .style("stroke-width", "5");
+      d3.selectAll(".individual_image"+i)
+        .append('rect')
+        .attr('class', 'image-border')
+        .attr('width', 100)
+        .attr('height', 100);
+        //TODO also highlight the amount of pictures on the corresponding isobar
 
     })
     .on("mouseout", function(d) {
@@ -105,6 +113,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .transition()
         .style("stroke", in_person_pedestrian_color)
         .style("stroke-width", "0");
+      // TODO on mouseout - stop highlighting the pictures
     })
   var bar2 = svg.selectAll('.orbar')
     .data(data)
@@ -112,16 +121,17 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .append('rect')
     .attr("class", (data, i) => "category" + i)
     .attr("x", function(d) {
-      return xScale(d.Things_Added_to_the_Park) + xScale.bandwidth() / 4;
+      return xScale(d.Things_Added_to_the_Park) + 2 *  xScale.bandwidth() / 4;
     })
     .attr("y", function(d) {
       return yScale(d.online_resident);
     })
     .attr("width", xScale.bandwidth() / 4)
-    .attr('fill', '#804ba3')
+    .attr('fill', online_resident_color)
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.online_resident);
     })
+    //mouseover actions
     .on("mouseover", function(d) {
       div.transition()
         .duration(200)
@@ -129,13 +139,14 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       div.html("Online Resident:" + "<br/>" + d.online_resident)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
-      // change color of outline to highlight when mouse over
       d3.select(this)
+        // change color of outline to highlight when mouse over
         .transition()
         .delay(100)
         .duration(100)
         .style("stroke", highlight_color)
         .style("stroke-width", "5");
+        //TODO also highlight the amount of pictures on the corresponding isobar
     })
     .on("mouseout", function(d) {
       div.transition()
@@ -146,6 +157,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .transition()
         .style("stroke", online_resident_color)
         .style("stroke-width", "0");
+        // TODO on mouseout - stop highlighting the pictures
     })
   var bar3 = svg.selectAll('.iprbar')
     .data(data)
@@ -153,7 +165,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .append('rect')
     .attr("class", (data, i) => "category" + i)
     .attr("x", function(d) {
-      return xScale(d.Things_Added_to_the_Park) + 2 * (xScale.bandwidth() / 4);
+      return xScale(d.Things_Added_to_the_Park) + (xScale.bandwidth() / 4);
     })
     .attr("y", function(d) {
       return yScale(d.in_person_resident);
@@ -170,13 +182,14 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       div.html("In-Person Resident:" + "<br/>" + d.in_person_resident)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
-      // change color of outline to highlight when mouse over
       d3.select(this)
+      // change color of outline to highlight when mouse over
         .transition()
         .delay(100)
         .duration(100)
         .style("stroke", highlight_color)
         .style("stroke-width", "5");
+         //TODO also highlight the amount of pictures on the corresponding isobar
     })
     .on("mouseout", function(d) {
       div.transition()
@@ -187,8 +200,8 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .transition()
         .style("stroke", in_person_resident_color)
         .style("stroke-width", "0");
+        // TODO on mouseout - stop highlighting the pictures
     })
-
 
   var rectX = 1000;
   var rectTextX = 1030;
@@ -196,19 +209,20 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
   var rectTextY = 70;
   // Handmade legend
   svg.append("text").attr("x", rectTextX).attr("y", rectTextY - 30).text("Legend: ").style("font-size", "15px").attr("alignment-baseline", "middle")
-  //in person resident square
-  svg.append("rect").attr("x", rectX).attr("y", rectY).attr("width", 15).attr("height", 15).style("fill", in_person_resident_color)
-  // online resident square
-  svg.append("rect").attr("x", rectX).attr("y", rectY + 30).attr("width", 15).attr("height", 15).style("fill", online_resident_color)
+  
   // in person pedestrian square
-  svg.append("rect").attr("x", rectX).attr("y", rectY + 60).attr("width", 15).attr("height", 15).style("fill", in_person_pedestrian_color)
+  svg.append("rect").attr("x", rectX).attr("y", rectY).attr("width", 15).attr("height", 15).style("fill", in_person_pedestrian_color)
+   //in person resident square
+   svg.append("rect").attr("x", rectX).attr("y", rectY + 30).attr("width", 15).attr("height", 15).style("fill", in_person_resident_color)
+  // online resident square
+  svg.append("rect").attr("x", rectX).attr("y", rectY + 60).attr("width", 15).attr("height", 15).style("fill", online_resident_color)
   // in person pedestrian text
-  svg.append("text").attr("x", rectTextX).attr("y", rectTextY).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline", "middle")
-  // online resident text
-  svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 30).text("Online Resident").style("font-size", "15px").attr("alignment-baseline", "middle")
+   svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 30).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline", "middle") 
   // in person resident text
-  svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 60).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline", "middle");
-
+   svg.append("text").attr("x", rectTextX).attr("y", rectTextY).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline", "middle");
+ // online resident text
+ svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 60).text("Online Resident").style("font-size", "15px").attr("alignment-baseline", "middle")
+ 
 
     var svg2 = d3.select('#svg')
       .attr('width', width + 200)
@@ -262,18 +276,17 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     var textX = 1030;
     svg2.append("text").attr("x", textX).attr("y", startingTextY - 30).text("Legend: ").style("font-size", "15px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/bench.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY).text("Rest Areas (benches, etc.) (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY).text("= 1 response for Rest Areas (benches, etc.)").style("font-size", "15px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/tree.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 30)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY + 30).text("Trees/Plants (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY + 30).text("= 1 response for Trees/Plants").style("font-size", "15px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/art.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 60)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY + 60).text("Art Installations (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY + 60).text("= 1 response for Art Installations").style("font-size", "15px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/play.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 90)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY + 90).text("Play Area for Kids (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY + 90).text("= 1 response for Play Area for Kids").style("font-size", "15px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/fountain.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 120)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY + 120).text("Fountains (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY + 120).text("= 1 response for Fountains").style("font-size", "15px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/other.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 150)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY + 150).text("Other (1 response)").style("font-size", "15px").attr("alignment-baseline", "middle")
-
+    svg2.append("text").attr("x", textX).attr("y", startingTextY + 150).text("= 1 response for Other").style("font-size", "15px").attr("alignment-baseline", "middle")
     ;
 
 
@@ -308,6 +321,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .data(data => d3.range(parseInt(data.total_responses, 10)))
       .enter()
       .append("svg:image")
+      .attr("class", (data, i) => "individual_image" + i)
       .attr("width", 45)
       .attr("height", yScale2(19) / 2)
       .attr("y", function(data, i) {
