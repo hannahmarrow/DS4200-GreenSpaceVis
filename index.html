@@ -39,18 +39,14 @@
 		<p>Service-Learning Course Project as part of <a href="http://www.ccs.neu.edu/home/cody/courses/ds4200-f19/">DS 4200: Information Presentation and Visualization</a>, taught by <a href="https://cody.khoury.northeastern.edu/">Prof. Cody Dunne</a>,
 			<a href="https://visualization.khoury.northeastern.edu/">Data Visualization @ Khoury</a>, <a href="https://www.khoury.northeastern.edu/">Northeastern University</a>.</p>
 
-
 		<h1>Motivation</h1>
-
-		<p><em>Chester Square Park was once a large, grassy park connecting the two sides of Chester Square, but has been separated into two smaller green spaces
+		<p>Chester Square Park was once a large, grassy park connecting the two sides of Chester Square, but has been separated into two smaller green spaces
 				when Massachusettes Avenue was constructed to go straight through Chester Square. Now, the parks are not used quite as often by Chester Square residents
 				and pedestrians alike, and the Chester Square Neighbors Association wanted to find ways to possibly enhance the park so that people would get more usage
 				and enjoyment out of it. Our study was centered around examining what current residents and pedestrians use the park for, and how often the park is used.
 				Ultimately, we decided that making a visualization to address the question of what improvements residents and pedestrians want added to the park would be
 				the most useful to the Chester Square Neighbors Association. That way, we can easily present to the Chester Square Neighbors Association what residents and
-				pedestrians want to see enhanced in the park, and hopefully making those enhancements will help increase park usage.</em></p>
-
-
+				pedestrians want to see enhanced in the park, and hopefully making those enhancements will help increase park usage.</p>
 
 		<h1>Visualization</h1>
 
@@ -93,8 +89,6 @@
 </div>
 
 
-
-
 	<!-- Your writeup goes here -->
 	<div class="content-column">
 
@@ -110,21 +104,34 @@
 
 		<h1>Visualization explanation</h1>
 
-		<p><em>final visualization screenshots (PNG imThings_Added_to_the_Parks), design justifications, UI walk-through, and linked presentation slides.</em></p>
+		<p><em>final visualization screenshots (PNG Things_Added_to_the_Parks), design justifications, UI walk-through, 
+      and linked presentation slides.</em></p>
+      <h3>UI Walkthrough</h3>
+      <p>Users can hover over any of the bars in the iso-type bar chart to see what the value of that category is (how many
+        responses total for each survey type for that category). When users hover over the iso-type bar chart, the corresponding bars for that 
+        same category in the neighboring grouped bar chart get highlighted, thus introducing a linking effect. This helps show how the response 
+        types were split for that category. For example, if the user hovers over the "Trees/Plants" iso-type bar, then the "Trees/Plants" bars in the 
+        grouped bar chart all get highlighed simultaneously, showing the breakdown of responses. 
+        When users hover over any of the bars in the grouped bar chart, the number of responses is also shown in a tool tip, along with the response type.
+        We will implement linking to the iso-type bar chart as well, having the corresponding iso-type bar highlight the amount of responses for the 
+        individual bar that is hovered over. 
+      </p>
 
 		<h1>Data Analysis</h1>
-		<p><em>The data we included was our 4 different CSVs for the different response types:
-				Online Residents, In Person Residents, In Person Pedestrians, and Total Responses. We are planning on using the
-				Total Responses for our ISO-type bar chart, and the other 3 individual response types for our grouped bar chart for comparison.
-			</em></p>
+		<p>The data we included was our four different CSV files for the different response types:
+				Online Residents, In Person Residents, In Person Pedestrians, and Total Responses. We use the
+				Total Responses for our ISO-type bar chart, and the other three individual response types for our grouped bar chart for comparison.
+			</p>
 
 		<p><em>Expectation: Data sources match the problem statement and are appropriate. These descriptions should be very explicit so someone could read your page and properly reproduce your results.</em></p>
 
 		<h1>Task Analysis</h1>
 
-		<p><em>The main task that we wanted to address was the question of "What things do current residents want to see added to the green spaces in Chester Square Park?"
-				The low level analytic task is to identify, the mid-level search task is to explore, and the high level analyze task is to discover.
-			</em></p>
+		<p>The main task that we wanted to address was the question of "What things do current residents want to see added
+       to the green spaces in Chester Square Park?"
+        The low level analytic task is to identify, the mid-level search 
+        task is to explore, and the high level analyze task is to discover.
+			</p>
 
 		<h1>Design Process</h1>
 
@@ -137,11 +144,18 @@
 
 		<h1>Conclusion</h1>
 
-		<p><em>For now, we have a grouped bar chart as our first visualization which shows all three types of survey responses for
-				the question "What do people want to see added to the green space?". We will add our iso-type bar chart in the future
-				that has the total number of responses for each category, with icons for each category that show what the activity or park addition is.
-				There will be brushing and linking involved between the two visualizations.
-			</em></p>
+		<p>We have two visualizations: and iso-type bar chart and a grouped bar chart. Our visualizations help answer the question
+       "What do people want to see added to the green space?", which was one of the questions in our survey to the residents and park goers of Chester
+       Square park.
+      The iso-type bar chart shows the total number of responses from each of our participant categories:
+       residents we surveyed in person, pedestrians we surveyed in person, and residents we surveyed online. There are icons for each category that 
+       serve as a visual aid to what the activity or park addition is. Each of these icons represents one survey response.
+       The grouped bar chart shows all three types of survey responses for. 
+       The two visualizations are linked through hovering actions: when users hover over one of the iso-type bars, the bars in the corresponding
+       category in the grouped bar chart get highlighed. In addition, when users hover of any of the bars individually, or the iso-type bar, 
+       a tooltip appears that tells the viewer how many responses there were for that category (in the iso-type chart), or how many responses there were
+       for that survey type (in the grouped bar chart), so they do not have to count, thus easing their cognitive load.
+			</p>
 
 		<h1>Acknowledgements</h1>
 
