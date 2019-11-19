@@ -19,17 +19,17 @@ h1, h2, h3 {
 .flex-container {
 	display: flex;
   /* align-items: stretch; */
-  background-color: blue;
+  background-color: white;
 	flex-wrap: nowrap;
 	justify-content: center;
 }
 
 #svg2 {
-	transform: scale(0.5);
+	transform: scale(.7);
 }
 
 #group {
-transform: scale(0.5);
+transform: scale(.7);
 }
 
 div.tooltip {

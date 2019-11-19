@@ -49,9 +49,6 @@
 				pedestrians want to see enhanced in the park, and hopefully making those enhancements will help increase park usage.</p>
 
 		<h1>Visualization</h1>
-
-		<p><em>Include the interactive visualization as part of this page. Static example follows.</em></p>
-
 	</div>
 
 	<!-- Your visualization here -->
@@ -103,9 +100,6 @@
 		</video>
 
 		<h1>Visualization explanation</h1>
-
-		<p><em>final visualization screenshots (PNG Things_Added_to_the_Parks), design justifications, UI walk-through, 
-      and linked presentation slides.</em></p>
       <h3>UI Walkthrough</h3>
       <p>Users can hover over any of the bars in the iso-type bar chart to see what the value of that category is (how many
         responses total for each survey type for that category). When users hover over the iso-type bar chart, the corresponding bars for that 
@@ -118,28 +112,41 @@
       </p>
 
 		<h1>Data Analysis</h1>
-		<p>The data we included was our four different CSV files for the different response types:
-				Online Residents, In Person Residents, In Person Pedestrians, and Total Responses. We use the
-				Total Responses for our ISO-type bar chart, and the other three individual response types for our grouped bar chart for comparison.
+		<p>The data we included is derived from four different CSV files for the different our response types:
+				Online Residents, In Person Residents, In Person Pedestrians, and Total Responses. The Online Residents data indicates the data we collected from responses to an
+				online survey sent out by Carol Blair to residents of Chester Square. The In Person Residents data indicates the data we collected from going to Chester Park ourselves
+				and asking Chester Square residents in person to answer the same questions from the online survey. The In Person Pedestrians data indicates the data we collected from going
+				to Chester Park and asking pedestrians walking through the park to answer the same questions from the online survey. Total responses is the aggregation of those three groups.
+				We used the Total Responses data for our ISO-type bar chart, and the other three individual response types data for our grouped bar chart for comparison.
 			</p>
-
-		<p><em>Expectation: Data sources match the problem statement and are appropriate. These descriptions should be very explicit so someone could read your page and properly reproduce your results.</em></p>
 
 		<h1>Task Analysis</h1>
 
 		<p>The main task that we wanted to address was the question of "What things do current residents want to see added
-       to the green spaces in Chester Square Park?"
-        The low level analytic task is to identify, the mid-level search 
-        task is to explore, and the high level analyze task is to discover.
+       to the green spaces in Chester Square Park?" The low level analytic task is to identify, the mid-level search task is to explore, and the high level analyze task is to discover.
 			</p>
 
 		<h1>Design Process</h1>
 
 		<p><em>Sketches and design choices to justify final visualization.</em></p>
+		<img src="images/sketch1.png" alt="sketch 1" width="500" height="500">
+		<img src="images/sketch2.png" alt="sketch 2" width="500" height="500">
+		<img src="images/sketch3.png" alt="sketch 3" width="500" height="500">
 
-		<p><em>Expectation: Evidence of iterative improvement.
-				Logical discussion of design choices grounded in theory from course.
-				Discusses feedback from usability testing.</em></p>
+		<p>Ultimately, we decided that using a single bar chart with a juxtaposing grouped bar chart would be the most effective way to display the answer to our main question of
+			"what do people want to see added to Chester Park?" It is effective because both visualizations make use of the vertical spatial position channel in order to encode the quantity
+			of people who chose each enhancement as the one that they want to see in the park. This makes it really easy for the user to quickly and effectively encode the data upon first glance,
+			as they can easily tell that the highest bar is the enhancement that the majority of people said that they would like to see in the park. We made the single bar chart an isotype bar
+			chart because the pictures made the visualization and little more fun and engaging, and it is helpful that the number of pictures corresponds to the number of responses, so that the
+			user can count them to get an exact number if they want, rather than trying to guess by following the top of the bar to the y axis on the left, which is especially hard to do with
+			pictures (but we also added details on demand for this reason so that viewers do not have to manually count, but they could if they wanted to). We also decided to use a grouped bar 
+			chart because we had three different groups that we surveyed, so breaking the results from the isotype bar chart down into their respective groups allowed for the user to get even 
+			more insight about what kinds of enhancements people want to see added to the park. The grouped bar chart uses the same vertical spatial encoding that is easy for the user to 
+			understand. It also uses color encoding which is a valuable tool because it allows viewers to easily discern the different groups. We thought these visualizations would be of great
+			use to the Chester Square Neighbors because not only can they get a high level idea of what things people want to see added and enhanced in Chester Park, they can also see how that 
+			breakdown looks in terms of pedestrians and residents, and even further in terms of residents who responded to an online survey and residents who were actually using the park. That 
+			way, if they want to target one specific group, this tool allows them to do so.
+		</p>
 
 
 		<h1>Conclusion</h1>

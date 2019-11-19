@@ -20,7 +20,7 @@ var highlight_color = "#e0ba51";
 var svg = d3.select('#group')
   .append('svg')
   .attr('width', width + 200)
-  .attr('height', height)
+  .attr('height', height + 200)
   .style('background', 'white');
 
 // Define the div for the tooltip
@@ -50,18 +50,21 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     //Add label
     .append("text")
     .attr("y", 30)
-    .attr("x", 20)
-    .style("stroke", 'black')
+    .attr("x", 50)
+    .style("fill", 'black')
+    .style("font-size", "15px")
     .text("Number of Responses");
 
   var xAxis = svg.append('g')
     .attr("transform", `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom().scale(xScale))
+    .style('font-size', "15px")
     //Add label
     .append("text")
     .attr("x", width - 70)
-    .attr("y", +20)
-    .style("stroke", 'black')
+    .attr("y", 40)
+    .style("fill", 'black')
+    .style("font-size", "15px")
     .text("Things Added\nto Park");
 
   //Draw bars
@@ -203,12 +206,21 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         // TODO on mouseout - stop highlighting the pictures
     })
 
+    // title for the grouped bar chart
+    var grouped_bar_title = svg
+    .append("text")
+    .attr("y", 15)
+    .attr("x", 350)
+    .style("fill", 'black')
+    .style("font-size", "20px")
+    .text("Response Counts for Different Survey Groups");
+
   var rectX = 1000;
   var rectTextX = 1030;
   var rectY = 60;
   var rectTextY = 70;
   // Handmade legend
-  svg.append("text").attr("x", rectTextX).attr("y", rectTextY - 30).text("Legend: ").style("font-size", "15px").attr("alignment-baseline", "middle")
+  svg.append("text").attr("x", rectTextX).attr("y", rectTextY - 30).text("Legend: ").style("font-size", "20px").attr("alignment-baseline", "middle")
   
   // in person pedestrian square
   svg.append("rect").attr("x", rectX).attr("y", rectY).attr("width", 15).attr("height", 15).style("fill", in_person_pedestrian_color)
@@ -217,16 +229,16 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
   // online resident square
   svg.append("rect").attr("x", rectX).attr("y", rectY + 60).attr("width", 15).attr("height", 15).style("fill", online_resident_color)
   // in person pedestrian text
-   svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 30).text("In-Person Resident").style("font-size", "15px").attr("alignment-baseline", "middle") 
+   svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 30).text("In-Person Resident").style("font-size", "20px").attr("alignment-baseline", "middle") 
   // in person resident text
-   svg.append("text").attr("x", rectTextX).attr("y", rectTextY).text("In-Person Pedestrian").style("font-size", "15px").attr("alignment-baseline", "middle");
+   svg.append("text").attr("x", rectTextX).attr("y", rectTextY).text("In-Person Pedestrian").style("font-size", "20px").attr("alignment-baseline", "middle");
  // online resident text
- svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 60).text("Online Resident").style("font-size", "15px").attr("alignment-baseline", "middle")
+ svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 60).text("Online Resident").style("font-size", "20px").attr("alignment-baseline", "middle")
  
 
     var svg2 = d3.select('#svg')
       .attr('width', width + 200)
-      .attr('height', height);
+      .attr('height', height + 200);
 
       svg2.select(".x.axis")
       .selectAll("text")
@@ -250,8 +262,9 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       //Add label
       .append("text")
       .attr("y", 30)
-      .attr("x", 20)
-      .style("stroke", 'black')
+      .attr("x", 50)
+      .style("fill", 'black')
+      .style("font-size", "15px")
       .text("Number of Responses");
 
     var xAxis = svg2.append('g')
@@ -261,8 +274,8 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       //Add label
       .append("text")
       .attr("x", width - 70)
-      .attr("y", +20)
-      .style("stroke", 'black')
+      .attr("y", 40)
+      .style("fill", 'black')
       .text("Things Added to Park");
 
     //Draw isotypes
@@ -272,21 +285,21 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     // Handmade legends
     var imageY = 30;
     var startingTextY = 40;
-    var imageX = 1000;
-    var textX = 1030;
-    svg2.append("text").attr("x", textX).attr("y", startingTextY - 30).text("Legend: ").style("font-size", "15px").attr("alignment-baseline", "middle")
+    var imageX = 900;
+    var textX = 930;
+    svg2.append("text").attr("x", textX).attr("y", startingTextY - 30).text("Legend: ").style("font-size", "20px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/bench.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY).text("= 1 response for Rest Areas (benches, etc.)").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY).text("= 1 response for Rest Areas (benches, etc.)").style("font-size", "20px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/tree.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 30)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY + 30).text("= 1 response for Trees/Plants").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY + 30).text("= 1 response for Trees/Plants").style("font-size", "20px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/art.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 60)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY + 60).text("= 1 response for Art Installations").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY + 60).text("= 1 response for Art Installations").style("font-size", "20px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/play.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 90)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY + 90).text("= 1 response for Play Area for Kids").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY + 90).text("= 1 response for Play Area for Kids").style("font-size", "20px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/fountain.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 120)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY + 120).text("= 1 response for Fountains").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY + 120).text("= 1 response for Fountains").style("font-size", "20px").attr("alignment-baseline", "middle")
     svg2.append("image").attr("href", "images/other.png").attr("width", 20).attr("height", 20).attr("x", imageX).attr("y", imageY + 150)
-    svg2.append("text").attr("x", textX).attr("y", startingTextY + 150).text("= 1 response for Other").style("font-size", "15px").attr("alignment-baseline", "middle")
+    svg2.append("text").attr("x", textX).attr("y", startingTextY + 150).text("= 1 response for Other").style("font-size", "20px").attr("alignment-baseline", "middle")
     ;
 
 
@@ -330,6 +343,15 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("xlink:href", function(data) {
         return d3.select(this.parentNode).datum().images
       })
+
+    // title for the iso bar chart
+    var iso_bar_title = svg2
+    .append("text")
+    .attr("y", 15)
+    .attr("x", 300)
+    .style("fill", 'black')
+    .style("font-size", "20px")
+    .text("What Enhancements and Additions Do People Want in Chester Park");
 
 
 });
