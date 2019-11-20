@@ -51,25 +51,27 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
   var yAxis = svg.append('g')
     .attr("transform", `translate(${margin.left},0)`)
     .call(d3.axisLeft().scale(yScale))
-    //Add label
-    .append("text")
-    .attr("y", 30)
-    .attr("x", 50)
-    .style("fill", 'black')
-    .style("font-size", "15px")
-    .text("Number of Responses");
+    .style('font-size', "17px")
+      //Add label
+      .append("text")
+      .text("Number of Responses")
+      .attr("x", 90)
+      .attr("y", 15)
+      .style("fill", 'black')
+      .style("font-weight","bold");
 
   var xAxis = svg.append('g')
     .attr("transform", `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom().scale(xScale))
-    .style('font-size', "15px")
-    //Add label
-    .append("text")
-    .attr("x", width - 70)
-    .attr("y", 40)
-    .style("fill", 'black')
-    .style("font-size", "15px")
-    .text("Things Added\nto Park");
+    .style('font-size', "17px")
+      //Add label
+      .append("text")
+      .text("Things Added to Park")
+      .attr("x", width + 50)
+      .attr("y", 40)
+      .style("fill", 'black')
+      .style("font-weight","bold")
+      .style("text-anchor","end");
 
   //Draw bars for the grouped bar chart
   //in person pedestrian bar (aka pedbar)
@@ -241,6 +243,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .attr("x", 350)
     .style("fill", 'black')
     .style("font-size", "25px")
+    .style("font-weight","bold")
     .text("Response Counts for Different Survey Groups");
 
   //legend variables
@@ -325,32 +328,35 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     var yAxis = svg2.append('g')
       .attr("transform", `translate(${margin.left},0)`)
       .call(d3.axisLeft().scale(yScale2))
-      //Add label
-      .append("text")
-      .attr("y", 30)
-      .attr("x", 50)
-      .style("fill", 'black')
-      .style("font-size", "15px")
-      .text("Number of Responses");
+      .style('font-size', "17px")
+     //Add label
+     .append("text")
+     .text("Number of Responses")
+     .attr("x", 90)
+     .attr("y", 15)
+     .style("fill", 'black')
+     .style("font-weight","bold");
 
     var xAxis = svg2.append('g')
       .attr("transform", `translate(0,${height - margin.bottom})`)
       .call(d3.axisBottom().scale(xScale))
-      .style('font-size', "15px")
+      .style('font-size', "17px")
       //Add label
       .append("text")
-      .attr("x", width - 70)
+      .text("Things Added to Park")
+      .attr("x", width + 50)
       .attr("y", 40)
       .style("fill", 'black')
-      .text("Things Added to Park");
+      .style("font-weight","bold")
+      .style("text-anchor","end");
 
     //Draw isotypes
     var isotypes = svg2.selectAll('.total')
       .data(data)
       .enter()
     //legend variables
-    var imageY = 30;
-    var startingTextY = 40;
+    var imageY = 130;
+    var startingTextY = 140;
     var imageX = 900;
     var startingTextX = 930;
 
@@ -500,6 +506,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .attr("x", 300)
     .style("fill", 'black')
     .style("font-size", "25px")
+    .style("font-weight","bold")
     .text("What Enhancements and Additions Do People Want in Chester Park?");
 
 });
