@@ -9,6 +9,18 @@ h1, h2, h3 {
 	line-height: 1.2
 }
 
+ul {
+	text-align: right;
+}
+
+
+span {
+  position: absolute;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  top: 200%;
+}
+
 /* Your text should be in a nice narrow column */
 .content-column {
 	max-width: 650px;
