@@ -55,36 +55,14 @@
 	<!-- Change viewbox to whatever you want, e.g. "0 0 1000 6000" This determines your aspect ratio and coordinate system -->
 	<!-- Delete all the sample SVG code below after the viewbox to before the closing tag. Populate this part of the SVG with D3.
 		Don't delete the closing tag! -->
-	<!-- </svg> -->
-	<!-- <div class="flex-container">
-	<!-- <div id="svg2">
-		<svg style="background:white" id="svg"></svg>
-	</div>
-	<div id="item">
-		<svg style="background:red" id="item"></svg>
-			<svg style="background:yellow" id="item"></svg>
-	</div> -->
-	<!-- <script src="/lib/d3.v5.12.0/d3.min.js"></script> -->
-	<!-- <div class="vis-holder">
-		<!-- <script src="lib/d3.v5.12.0/d3.min.js"></script> -->
-		<!-- <script class=visualization src="visualization.js"></script> -->
-		<!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
-		<!-- <svg></svg>
-	</div>
-	</div>  -->
-
-	<div class="flex-container">
-  <!-- <div style="flex-grow: 1"> -->
-	<div id="svg2">
-		<svg style="background:white" id="svg"></svg>
-	</div>
-<!-- </div> -->
-<!-- <div style="flex-grow: 1"> -->
 <div id="group">
 </div>
-
 </div>
 
+<div class="vis-holder">
+		<div class="isograph-holder" id="isograph"></div>
+		<div class="groupbar-holder" id="groupbar"></div>
+</div>
 
 	<!-- Your writeup goes here -->
 	<div class="content-column">
@@ -102,13 +80,13 @@
 		<h1>Visualization explanation</h1>
       <h3>UI Walkthrough</h3>
       <p>Users can hover over any of the bars in the iso-type bar chart to see what the value of that category is (how many
-        responses total for each survey type for that category). When users hover over the iso-type bar chart, the corresponding bars for that 
-        same category in the neighboring grouped bar chart get highlighted, thus introducing a linking effect. This helps show how the response 
-        types were split for that category. For example, if the user hovers over the "Trees/Plants" iso-type bar, then the "Trees/Plants" bars in the 
-        grouped bar chart all get highlighed simultaneously, showing the breakdown of responses. 
+        responses total for each survey type for that category). When users hover over the iso-type bar chart, the corresponding bars for that
+        same category in the neighboring grouped bar chart get highlighted, thus introducing a linking effect. This helps show how the response
+        types were split for that category. For example, if the user hovers over the "Trees/Plants" iso-type bar, then the "Trees/Plants" bars in the
+        grouped bar chart all get highlighed simultaneously, showing the breakdown of responses.
         When users hover over any of the bars in the grouped bar chart, the number of responses is also shown in a tool tip, along with the response type.
-        We will implement linking to the iso-type bar chart as well, having the corresponding iso-type bar highlight the amount of responses for the 
-        individual bar that is hovered over. 
+        We will implement linking to the iso-type bar chart as well, having the corresponding iso-type bar highlight the amount of responses for the
+        individual bar that is hovered over.
       </p>
 
 		<h1>Data Analysis</h1>
@@ -139,12 +117,12 @@
 			as they can easily tell that the highest bar is the enhancement that the majority of people said that they would like to see in the park. We made the single bar chart an isotype bar
 			chart because the pictures made the visualization and little more fun and engaging, and it is helpful that the number of pictures corresponds to the number of responses, so that the
 			user can count them to get an exact number if they want, rather than trying to guess by following the top of the bar to the y axis on the left, which is especially hard to do with
-			pictures (but we also added details on demand for this reason so that viewers do not have to manually count, but they could if they wanted to). We also decided to use a grouped bar 
-			chart because we had three different groups that we surveyed, so breaking the results from the isotype bar chart down into their respective groups allowed for the user to get even 
-			more insight about what kinds of enhancements people want to see added to the park. The grouped bar chart uses the same vertical spatial encoding that is easy for the user to 
+			pictures (but we also added details on demand for this reason so that viewers do not have to manually count, but they could if they wanted to). We also decided to use a grouped bar
+			chart because we had three different groups that we surveyed, so breaking the results from the isotype bar chart down into their respective groups allowed for the user to get even
+			more insight about what kinds of enhancements people want to see added to the park. The grouped bar chart uses the same vertical spatial encoding that is easy for the user to
 			understand. It also uses color encoding which is a valuable tool because it allows viewers to easily discern the different groups. We thought these visualizations would be of great
-			use to the Chester Square Neighbors because not only can they get a high level idea of what things people want to see added and enhanced in Chester Park, they can also see how that 
-			breakdown looks in terms of pedestrians and residents, and even further in terms of residents who responded to an online survey and residents who were actually using the park. That 
+			use to the Chester Square Neighbors because not only can they get a high level idea of what things people want to see added and enhanced in Chester Park, they can also see how that
+			breakdown looks in terms of pedestrians and residents, and even further in terms of residents who responded to an online survey and residents who were actually using the park. That
 			way, if they want to target one specific group, this tool allows them to do so.
 		</p>
 
@@ -155,11 +133,11 @@
        "What do people want to see added to the green space?", which was one of the questions in our survey to the residents and park goers of Chester
        Square park.
       The iso-type bar chart shows the total number of responses from each of our participant categories:
-       residents we surveyed in person, pedestrians we surveyed in person, and residents we surveyed online. There are icons for each category that 
+       residents we surveyed in person, pedestrians we surveyed in person, and residents we surveyed online. There are icons for each category that
        serve as a visual aid to what the activity or park addition is. Each of these icons represents one survey response.
-       The grouped bar chart shows all three types of survey responses for. 
+       The grouped bar chart shows all three types of survey responses for.
        The two visualizations are linked through hovering actions: when users hover over one of the iso-type bars, the bars in the corresponding
-       category in the grouped bar chart get highlighed. In addition, when users hover of any of the bars individually, or the iso-type bar, 
+       category in the grouped bar chart get highlighed. In addition, when users hover of any of the bars individually, or the iso-type bar,
        a tooltip appears that tells the viewer how many responses there were for that category (in the iso-type chart), or how many responses there were
        for that survey type (in the grouped bar chart), so they do not have to count, thus easing their cognitive load.
 			</p>

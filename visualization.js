@@ -17,11 +17,10 @@ var in_person_resident_color =  '#054A91';
 var in_person_pedestrian_color = "#804ba3";
 var highlight_color = "#e0ba51";
 
-var svg = d3.select('#group')
+var svg = d3.select('#groupbar')
   .append('svg')
-  .attr('width', width + 200)
-  .attr('height', height + 200)
-  .style('background', 'white');
+  .attr("preserveAspectRatio", "xMidYMid meet")
+  .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom].join(' '));
 
 // Define the div for the tooltip
 var div = d3.select("body").append("div")
@@ -221,7 +220,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
   var rectTextY = 70;
   // Handmade legend
   svg.append("text").attr("x", rectTextX).attr("y", rectTextY - 30).text("Legend: ").style("font-size", "20px").attr("alignment-baseline", "middle")
-  
+
   // in person pedestrian square
   svg.append("rect").attr("x", rectX).attr("y", rectY).attr("width", 15).attr("height", 15).style("fill", in_person_pedestrian_color)
    //in person resident square
@@ -229,16 +228,17 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
   // online resident square
   svg.append("rect").attr("x", rectX).attr("y", rectY + 60).attr("width", 15).attr("height", 15).style("fill", online_resident_color)
   // in person pedestrian text
-   svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 30).text("In-Person Resident").style("font-size", "20px").attr("alignment-baseline", "middle") 
+   svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 30).text("In-Person Resident").style("font-size", "20px").attr("alignment-baseline", "middle")
   // in person resident text
    svg.append("text").attr("x", rectTextX).attr("y", rectTextY).text("In-Person Pedestrian").style("font-size", "20px").attr("alignment-baseline", "middle");
  // online resident text
  svg.append("text").attr("x", rectTextX).attr("y", rectTextY + 60).text("Online Resident").style("font-size", "20px").attr("alignment-baseline", "middle")
- 
 
-    var svg2 = d3.select('#svg')
-      .attr('width', width + 200)
-      .attr('height', height + 200);
+
+    var svg2 = d3.select('#isograph')
+      .append('svg')
+      .attr("preserveAspectRatio", "xMidYMid meet")
+      .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom].join(' '));
 
       svg2.select(".x.axis")
       .selectAll("text")
@@ -309,6 +309,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .append("g")
       .attr("transform", (data, i) => "translate(" + (190 + i * 150) + "," + yScale2(19) + ")")
       .attr("class", (data, i) => "bar" + i)
+      .attr("preserveAspectRatio", "xMidYMid meet")
       .on("mouseover", function(data, i) {
         div.transition()
           .duration(200)
