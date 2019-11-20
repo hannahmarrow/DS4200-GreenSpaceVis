@@ -22,11 +22,10 @@ var online_resident_color  = "#8DA0CB" ;
 var highlight_color = "#154B4F";
 
 // set SVG variable with height, width, bg color
-var svg = d3.select('#group')
+var svg = d3.select('#groupbar')
   .append('svg')
-  .attr('width', width + 200)
-  .attr('height', height + 200)
-  .style('background', 'white');
+  .attr("preserveAspectRatio", "xMidYMid meet")
+  .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom].join(' '));
 
 // Define the div for the tooltip
 var div = d3.select("body").append("div")
@@ -222,7 +221,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .style("stroke-width", "5");
          //TODO also highlight the amount of pictures on the corresponding isobar
     })
-    //hoer out actions
+    //hover out actions
     .on("mouseout", function(d) {
       div.transition()
         .duration(500)
@@ -283,7 +282,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .attr("y", rectTextY + 30)
     .text("In-Person Resident")
     .style("font-size", "20px")
-    .attr("alignment-baseline", "middle") 
+    .attr("alignment-baseline", "middle")
   // in person resident text
    svg.append("text")
     .attr("x", rectTextX)
@@ -291,18 +290,20 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .text("In-Person Pedestrian")
     .style("font-size", "20px")
     .attr("alignment-baseline", "middle");
- // online resident text
- svg.append("text")
-  .attr("x", rectTextX)
-  .attr("y", rectTextY + 60)
-  .text("Online Resident")
-  .style("font-size", "20px")
-  .attr("alignment-baseline", "middle")
- 
-//Iso-Type Bar Chart
-    var svg2 = d3.select('#svg')
-      .attr('width', width + 200)
-      .attr('height', height + 200);
+    // online resident text
+    svg.append("text")
+      .attr("x", rectTextX)
+      .attr("y", rectTextY + 60)
+      .text("Online Resident")
+      .style("font-size", "20px")
+      .attr("alignment-baseline", "middle")
+
+
+    var svg2 = d3.select('#isograph')
+      .append('svg')
+      .attr("preserveAspectRatio", "xMidYMid meet")
+      .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom]
+      .join(' '));
 
     //set the font size of the x axis
     svg2.select(".x.axis")
@@ -454,6 +455,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("transform", (data, i) => "translate(" + (190 + i * 150) + "," + yScale2(19) + ")")
       .attr("class", (data, i) => "bar" + i)
       //hover actions
+      .attr("preserveAspectRatio", "xMidYMid meet")
       .on("mouseover", function(data, i) {
         //tooltip functions
         div.transition()
