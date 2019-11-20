@@ -237,10 +237,10 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     // title for the grouped bar chart
     var grouped_bar_title = svg
     .append("text")
-    .attr("y", 15)
+    .attr("y", 20)
     .attr("x", 350)
     .style("fill", 'black')
-    .style("font-size", "20px")
+    .style("font-size", "25px")
     .text("Response Counts for Different Survey Groups");
 
   //legend variables
@@ -352,12 +352,12 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     var imageY = 30;
     var startingTextY = 40;
     var imageX = 900;
-    var textX = 930;
+    var startingTextX = 930;
 
     // Handmade legends
-      //Legend Title
+    //Legend Title
     svg2.append("text")
-      .attr("x", textX)
+      .attr("x", startingTextX)
       .attr("y", startingTextY - 30)
       .text("Legend: ")
       .style("font-size", "20px")
@@ -371,7 +371,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("y", imageY)
       //add rest area text
     svg2.append("text")
-      .attr("x", textX)
+      .attr("x", startingTextX)
       .attr("y", startingTextY)
       .text("= 1 response for Rest Areas (benches, etc.)")
       .style("font-size", "20px")
@@ -385,7 +385,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("y", imageY + 30)
       //add tree text
     svg2.append("text")
-      .attr("x", textX)
+      .attr("x", startingTextX)
       .attr("y", startingTextY + 30)
       .text("= 1 response for Trees/Plants")
       .style("font-size", "20px")
@@ -399,7 +399,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("y", imageY + 60)
       //add art text
     svg2.append("text")
-      .attr("x", textX)
+      .attr("x", startingTextX)
       .attr("y", startingTextY + 60)
       .text("= 1 response for Art Installations")
       .style("font-size", "20px")
@@ -413,7 +413,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("y", imageY + 90)
       //add play text
     svg2.append("text")
-      .attr("x", textX)
+      .attr("x", startingTextX)
       .attr("y", startingTextY + 90)
       .text("= 1 response for Play Area for Kids")
       .style("font-size", "20px")
@@ -427,7 +427,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("y", imageY + 120)
       //add fountain text
     svg2.append("text")
-      .attr("x", textX)
+      .attr("x", startingTextX)
       .attr("y", startingTextY + 120)
       .text("= 1 response for Fountains")
       .style("font-size", "20px")
@@ -441,7 +441,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("y", imageY + 150)
       //add Other text
     svg2.append("text")
-      .attr("x", textX)
+      .attr("x", startingTextX)
       .attr("y", startingTextY + 150)
       .text("= 1 response for Other")
       .style("font-size", "20px")
@@ -496,10 +496,10 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     // title for the iso bar chart
     var iso_bar_title = svg2
     .append("text")
-    .attr("y", 15)
+    .attr("y", 20)
     .attr("x", 300)
     .style("fill", 'black')
-    .style("font-size", "20px")
-    .text("What Enhancements and Additions Do People Want in Chester Park");
+    .style("font-size", "25px")
+    .text("What Enhancements and Additions Do People Want in Chester Park?");
 
 });
