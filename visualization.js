@@ -97,13 +97,15 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       return height - margin.bottom - yScale(d.in_person_pedestrian);
     })
     //hovering functions
-    .on("mouseover", function(d) {
+    .on("mouseover", function(d, i) {
       //tooltip informtation
       div.transition()
         .duration(200)
         .style("opacity", .9);
+      //number of responses variable
+      var num_responses = d.in_person_pedestrian;
       //response type info and count of responses
-      div.html("In-Person Pedestrian:" + "<br/>" + d.in_person_pedestrian)
+      div.html("In-Person Pedestrian:" + "<br/>" + num_responses)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
       d3.select(this)
@@ -113,16 +115,17 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .duration(100)
         .style("stroke", highlight_color)
         .style("stroke-width", "5");
-      d3.selectAll(".individual_image"+i)
-        .append('rect')
-        .attr('class', 'image-border')
-        .attr('width', 100)
-        .attr('height', 100);
-        //TODO also highlight the amount of pictures on the corresponding isobar
+        //also highlight the amount of pictures on the corresponding isobar
+        // by changing the opacity of the number of responses to 1, and the rest to 0.2
+      d3.select(".bar" + i)
+        .selectAll("image")
+        .style("opacity", (d,i) => {
+          return i < num_responses ? 1 : 0.3
+        });
 
     })
     //when the cursor stops hovering, set back to normal
-    .on("mouseout", function(d) {
+    .on("mouseout", function(d, i) {
       div.transition()
         .duration(500)
         .style("opacity", 0);
@@ -131,7 +134,10 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .transition()
         .style("stroke", in_person_pedestrian_color)
         .style("stroke-width", "0");
-      // TODO on mouseout - stop highlighting the pictures
+      //on mouseout - reset opacity
+      d3.select(".bar" + i)
+      .selectAll("image")
+      .style("opacity", 1)
     })
   //Online Resident bar
   var bar2 = svg.selectAll('.orbar')
@@ -156,12 +162,14 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       return height - margin.bottom - yScale(d.online_resident);
     })
     //hover actions
-    .on("mouseover", function(d) {
+    .on("mouseover", function(d, i) {
       div.transition()
         .duration(200)
         .style("opacity", .9);
+      //var for num responses
+      var or_num_responses = d.online_resident;
         //tooltip - say the response type and the count
-      div.html("Online Resident:" + "<br/>" + d.online_resident)
+      div.html("Online Resident:" + "<br/>" + or_num_responses)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
       d3.select(this)
@@ -171,9 +179,15 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .duration(100)
         .style("stroke", highlight_color)
         .style("stroke-width", "5");
-        //TODO also highlight the amount of pictures on the corresponding isobar
-    })
-    .on("mouseout", function(d) {
+        //also highlight the amount of pictures on the corresponding isobar
+        // by changing the opacity of the number of responses to 1, and the rest to 0.2
+        d3.select(".bar" + i)
+          .selectAll("image")
+          .style("opacity", (d,i) => {
+            return i < or_num_responses ? 1 : 0.3
+          });
+        })
+    .on("mouseout", function(d, i) {
       div.transition()
         .duration(500)
         .style("opacity", 0);
@@ -182,7 +196,10 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .transition()
         .style("stroke", online_resident_color)
         .style("stroke-width", "0");
-        // TODO on mouseout - stop highlighting the pictures
+      //on mouseout - reset opacity
+      d3.select(".bar" + i)
+      .selectAll("image")
+      .style("opacity", 1)
     })
   //in person resident bar
   var bar3 = svg.selectAll('.iprbar')
@@ -206,12 +223,14 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       return height - margin.bottom - yScale(d.in_person_resident);
     })
     //hover actions
-    .on("mouseover", function(d) {
+    .on("mouseover", function(d, i) {
       div.transition()
         .duration(200)
         .style("opacity", .9);
+      //var for num responses
+      var ipr_num_responses = d.in_person_resident;
         //tooltip information - say the response type and the count
-      div.html("In-Person Resident:" + "<br/>" + d.in_person_resident)
+      div.html("In-Person Resident:" + "<br/>" + ipr_num_responses)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
       d3.select(this)
@@ -221,10 +240,16 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .duration(100)
         .style("stroke", highlight_color)
         .style("stroke-width", "5");
-         //TODO also highlight the amount of pictures on the corresponding isobar
-    })
+        //also highlight the amount of pictures on the corresponding isobar
+        // by changing the opacity of the number of responses to 1, and the rest to 0.2
+        d3.select(".bar" + i)
+          .selectAll("image")
+          .style("opacity", (d,i) => {
+            return i < ipr_num_responses ? 1 : 0.3
+          });
+        })
     //hover out actions
-    .on("mouseout", function(d) {
+    .on("mouseout", function(d, i) {
       div.transition()
         .duration(500)
         .style("opacity", 0);
@@ -233,18 +258,21 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .transition()
         .style("stroke", in_person_resident_color)
         .style("stroke-width", "0");
-        // TODO on mouseout - stop highlighting the pictures
-    })
+      //on mouseout - reset opacity
+      d3.select(".bar" + i)
+        .selectAll("image")
+        .style("opacity", 1)   
+       })
 
     // title for the grouped bar chart
     var grouped_bar_title = svg
-    .append("text")
-    .attr("y", 20)
-    .attr("x", 350)
-    .style("fill", 'black')
-    .style("font-size", "25px")
-    .style("font-weight","bold")
-    .text("Response Counts for Different Survey Groups");
+      .append("text")
+      .attr("y", 20)
+      .attr("x", 350)
+      .style("fill", 'black')
+      .style("font-size", "25px")
+      .style("font-weight","bold")
+      .text("Response Counts for Different Survey Groups");
 
   //legend variables
   var rectX = 1000;
