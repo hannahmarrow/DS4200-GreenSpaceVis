@@ -277,9 +277,9 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
   //legend variables
   var rectX = 1000;
   var rectTextX = 1030;
-  var rectY = 60;
-  var rectTextY = 70;
-  // Handmade legend
+  var rectY = 80;
+  var rectTextY = 90;
+  // Grouped Bar legend
   svg.append("text")
     .attr("x", rectTextX)
     .attr("y", rectTextY - 30)
@@ -383,13 +383,13 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .data(data)
       .enter()
     //legend variables
-    var imageY = 130;
-    var startingTextY = 140;
-    var imageX = 900;
-    var startingTextX = 930;
+    var imageY = 80;
+    var startingTextY = 90;
+    var imageX = 880;
+    var startingTextX = 910;
 
     // Handmade legends
-    //Legend Title
+    //Isotype Legend Title
     svg2.append("text")
       .attr("x", startingTextX)
       .attr("y", startingTextY - 30)
@@ -407,7 +407,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     svg2.append("text")
       .attr("x", startingTextX)
       .attr("y", startingTextY)
-      .text("= 1 response for Rest Areas (benches, etc.)")
+      .text("= 1 response for Rest Areas")
       .style("font-size", "20px")
       .attr("alignment-baseline", "middle")
       //add tree image
