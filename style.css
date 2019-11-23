@@ -64,7 +64,7 @@ div.tooltip {
 	pointer-events: none;
 }
 
-/* Fork on GitHub ribbon via https://codepo8.github.io/css-fork-on-github-ribbon/# */
+/* Fork on GitHub ribbon via https://codepo8.github.io/css-fork-on-github-ribbon/# */  
 #forkongithub a{
 	background:#00F;
 	color:#fff;
@@ -74,7 +74,7 @@ div.tooltip {
 	font-weight:bold;
 	padding:5px 40px;
 	font-size:1rem;
-	line-height:2rem;
+	line-height:1.4rem;
 	position:relative;
 	transition:0.5s;
 }
@@ -96,9 +96,9 @@ div.tooltip {
 	bottom:1px;
 	top:auto;
 }
-@media screen and (min-width:800px){
+@media screen and (min-width:1000px){
 	#forkongithub{
-		position:fixed;
+		position:absolute;
 		display:block;
 		top:0;
 		right:0;
