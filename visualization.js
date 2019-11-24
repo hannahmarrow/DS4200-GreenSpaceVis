@@ -104,8 +104,11 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .style("opacity", .9);
       //number of responses variable
       var num_responses = d.in_person_pedestrian;
-      //response type info and count of responses
-      div.html("In-Person Pedestrian:" + "<br/>" + num_responses)
+      // string variable for the other responses text
+      var other_responses_pedestrian = d.other_responses_pedestrian;
+
+      //response type info and count of responses (and Other responses if necessary)
+      div.html("In-Person Pedestrian:" +"<br/>" + num_responses + "<br/>" + other_responses_pedestrian)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
       d3.select(this)
@@ -168,8 +171,10 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .style("opacity", .9);
       //var for num responses
       var or_num_responses = d.online_resident;
-        //tooltip - say the response type and the count
-      div.html("Online Resident:" + "<br/>" + or_num_responses)
+      // string var for the other responses text
+      var other_responses_online = d.other_responses_online;
+        //tooltip - say the response type and the count, and other response text if necessary
+      div.html("Online Resident: " + or_num_responses + "<br/>" + other_responses_online)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
       d3.select(this)
