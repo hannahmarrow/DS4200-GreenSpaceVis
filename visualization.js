@@ -25,8 +25,8 @@ var highlight_color = "#154B4F";
 var svg = d3.select('#groupbar')
   .append('svg')
   .attr("preserveAspectRatio", "xMidYMid meet")
-  .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom].join(' '));
-
+  .attr("viewBox", [0, 0, width + margin.left + margin.right, 
+    height + margin.top + margin.bottom + 120].join(' '));
 // Define the div for the tooltip
 var div = d3.select("body").append("div")
   .attr("class", "tooltip")
@@ -47,6 +47,11 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .range([margin.left, width - margin.right])
     .padding(0.5);
 
+  var making_axis = function(d) {
+    xScale.classed("tilted")
+    return d.Things_Added_to_the_Park
+  }
+
   //Draw Axes
   var yAxis = svg.append('g')
     .attr("transform", `translate(${margin.left},0)`)
@@ -63,15 +68,21 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
   var xAxis = svg.append('g')
     .attr("transform", `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom().scale(xScale))
-    .style('font-size', "17px")
-      //Add label
-      .append("text")
-      .text("Things Added to Park")
-      .attr("x", width + 50)
-      .attr("y", 40)
-      .style("fill", 'black')
-      .style("font-weight","bold")
-      .style("text-anchor","end");
+    .style('font-size', "25px").selectAll("text")	
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", function(d) {
+        return "rotate(-65)" 
+        })
+    //Add label
+    .append("text")
+    .text("Things Added to Park")
+    .attr("x", width + 50)
+    .attr("y", 40)
+    .style("fill", 'black')
+    .style("font-weight","bold")
+    .style("text-anchor","end");
 
   //Draw bars for the grouped bar chart
   //in person pedestrian bar (aka pedbar)
@@ -338,7 +349,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     var svg2 = d3.select('#isograph')
       .append('svg')
       .attr("preserveAspectRatio", "xMidYMid meet")
-      .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom]
+      .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom + 120]
       .join(' '));
 
     //set the font size of the x axis
@@ -373,7 +384,14 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     var xAxis = svg2.append('g')
       .attr("transform", `translate(0,${height - margin.bottom})`)
       .call(d3.axisBottom().scale(xScale))
-      .style('font-size', "17px")
+      .style('font-size', "25px").selectAll("text")	
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", ".15em")
+      .attr("transform", function(d) {
+          return "rotate(-65)" 
+          })
+
       //Add label
       .append("text")
       .text("Things Added to Park")
