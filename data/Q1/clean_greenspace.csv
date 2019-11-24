@@ -1,7 +1,7 @@
-﻿Things_Added_to_the_Park,in_person_pedestrian,in_person_resident,online_resident,total_responses,images
-Rest Areas,0,1,4,5,"images/bench.png"
-Trees/Plants,4,2,9,15,"images/tree.png"
-Art Installations,2,3,8,13,"images/art.png"
-Play Area for Kids,3,2,8,13,"images/play.png"
-Fountains,2,1,5,8,"images/fountain.png"
-Other,2,0,5,7,"images/other.png"
+﻿Things_Added_to_the_Park,in_person_pedestrian,in_person_resident,online_resident,total_responses,images,other_responses_online,other_responses_pedestrian
+Rest Areas,0,1,4,5,images/bench.png,,
+Trees/Plants,4,2,9,15,images/tree.png,,
+Art Installations,2,3,8,13,images/art.png,,
+Play Area for Kids,3,2,8,13,images/play.png,,
+Fountains,2,1,5,8,images/fountain.png,,
+Other,2,0,5,7,images/other.png,"Other responses: A crosswalk connecting both sides of the park, working fountains","Other responses: Ramada Area, toilets"
