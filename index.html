@@ -52,9 +52,6 @@
 	</div>
 
 	<!-- Your visualization here -->
-	<!-- Change viewbox to whatever you want, e.g. "0 0 1000 6000" This determines your aspect ratio and coordinate system -->
-	<!-- Delete all the sample SVG code below after the viewbox to before the closing tag. Populate this part of the SVG with D3.
-		Don't delete the closing tag! -->
 <div id="group">
 </div>
 </div>
@@ -64,20 +61,6 @@
 		<div class="groupbar-holder" id="groupbar"></div>
 </div>
 
-<!-- <p style="text-align:right;">
-		<b>"Other" responses for In-Person Pedestrians include:</b>
-				  <p ul style="text-align:right">Ramada Area
-					<br>
-				  Toilets</p>
-		        </ul>
-		</em></p>
-	<p style="text-align:right">
-	<b>"Other" responses for Online Residents include:</b>
-			  <p ul style="text-align:right">A crosswalk connecting both sides of the park
-				<br>
-			  Working fountains</p>
-	        </ul>
-	</em></p> -->
 
 
 	<!-- Your writeup goes here -->
@@ -123,9 +106,18 @@
 		<h1>Design Process</h1>
 
 		<p><em>Sketches and design choices to justify final visualization.</em></p>
-		<img src="images/sketch1.png" alt="sketch 1" width="500" height="500">
-		<img src="images/sketch2.png" alt="sketch 2" width="500" height="500">
-		<img src="images/sketch3.png" alt="sketch 3" width="500" height="500">
+
+		<div class="row">
+			<div class="column">
+			  <img src="images/sketch1.png" alt="sketch 1" style="width:90%">
+			</div>
+			<div class="column">
+			  <img src="images/sketch2.png" alt="sketch 2" style="width:90%">
+			</div>
+			<div class="column">
+			  <img src="images/sketch3.png" alt="sketch 3" style="width:90%">
+			</div>
+		  </div>
 
 		<p>Ultimately, we decided that using a single bar chart with a juxtaposing grouped bar chart would be the most effective way to display the answer to our main question of
 			"what do people want to see added to Chester Park?" It is effective because both visualizations make use of the vertical spatial position channel in order to encode the quantity
@@ -133,7 +125,10 @@
 			as they can easily tell that the highest bar is the enhancement that the majority of people said that they would like to see in the park. We made the single bar chart an isotype bar
 			chart because the pictures made the visualization and little more fun and engaging, and it is helpful that the number of pictures corresponds to the number of responses, so that the
 			user can count them to get an exact number if they want, rather than trying to guess by following the top of the bar to the y axis on the left, which is especially hard to do with
-			pictures (but we also added details on demand for this reason so that viewers do not have to manually count, but they could if they wanted to). We also decided to use a grouped bar
+			pictures (but we also added details on demand for this reason so that viewers do not have to manually count, but they could if they wanted to). 
+			<br>
+			<br>
+			We also decided to use a grouped bar
 			chart because we had three different groups that we surveyed, so breaking the results from the isotype bar chart down into their respective groups allowed for the user to get even
 			more insight about what kinds of enhancements people want to see added to the park. The grouped bar chart uses the same vertical spatial encoding that is easy for the user to
 			understand. It also uses color encoding which is a valuable tool because it allows viewers to easily discern the different groups. We thought these visualizations would be of great
@@ -145,7 +140,7 @@
 
 		<h1>Conclusion</h1>
 
-		<p>We have two visualizations: and iso-type bar chart and a grouped bar chart. Our visualizations help answer the question
+		<p>We have two visualizations: an iso-type bar chart and a grouped bar chart. Our visualizations help answer the question
        "What do people want to see added to the green space?", which was one of the questions in our survey to the residents and park goers of Chester
        Square park.
       The iso-type bar chart shows the total number of responses from each of our participant categories:
@@ -160,12 +155,15 @@
 
 		<h1>Acknowledgements</h1>
 
-		<p><em>List here where any code, packThings_Added_to_the_Parks/libraries, text, imThings_Added_to_the_Parks, designs, etc. that you leverage come from.</em></p>
-
 		<ul>
 			<li><a href="https://d3js.org/">D3: Data-Driven Documents</a> by Mike Bostock.</li>
 			<li><a href="https://codepo8.github.io/css-fork-on-github-ribbon/#">Pure CSS responsive "Fork me on GitHub" ribbon</a> by Chris Heilmann</li>
 			<li><a href="https://docs.google.com/presentation/d/11KLjlLZkv7ykyCLfEsvSkul_0A9LGHOEb4hFW5V3TQA/edit#slide=id.g633584fea3_0_140">In class demo</a> from Uzma</li>
+			<li><a href="https://stackoverflow.com/questions/42207429/how-to-add-multiple-images-to-svg-in-d3-quantity-based-on-value-in-dataset">Stacking photos</a> from Gerardo Furtado</li>
+			<li><a href="http://www.d3noob.org/2013/01/how-to-rotate-text-labels-for-x-axis-of.html">Tilted axes</a> from D3 Noob</li>
+			<li><a href="http://bl.ocks.org/d3noob/a22c42db65eb00d4e369">Tooltip on hover</a> from D3 Noob</li>
+			<li><a href="https://bl.ocks.org/hydrosquall/7966e9c8e8414ffcd8b5">Grouped bar chart</a> from Cameron Yick</li>
+			<li><a href="https://d3js.org/">Data-driven documents</a> from Mike Bostock</li>
 		</ul>
 
 	</div>
