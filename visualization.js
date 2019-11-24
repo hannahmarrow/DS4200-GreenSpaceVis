@@ -73,13 +73,14 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .attr("dx", "-.8em")
     .attr("dy", ".15em")
     .attr("transform", function(d) {
-        return "rotate(-65)" 
-        })
+        return "rotate(-35)" 
+        });
+  var xAxis = svg.append('g')
     //Add label
     .append("text")
     .text("Things Added to Park")
     .attr("x", width + 50)
-    .attr("y", 40)
+    .attr("y", height + margin.bottom)
     .style("fill", 'black')
     .style("font-weight","bold")
     .style("text-anchor","end");
@@ -389,17 +390,18 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("dx", "-.8em")
       .attr("dy", ".15em")
       .attr("transform", function(d) {
-          return "rotate(-65)" 
+          return "rotate(-35)" 
           })
 
-      //Add label
-      .append("text")
-      .text("Things Added to Park")
-      .attr("x", width + 50)
-      .attr("y", 40)
-      .style("fill", 'black')
-      .style("font-weight","bold")
-      .style("text-anchor","end");
+          var xAxis = svg2.append('g')
+          //Add label
+          .append("text")
+          .text("Things Added to Park")
+          .attr("x", width + 50)
+          .attr("y", height + margin.bottom)
+          .style("fill", 'black')
+          .style("font-weight","bold")
+          .style("text-anchor","end");
 
     //Draw isotypes
     var isotypes = svg2.selectAll('.total')
