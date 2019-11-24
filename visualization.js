@@ -78,9 +78,9 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
   var xAxis = svg.append('g')
     //Add label
     .append("text")
-    .text("Things Added to Park")
+    .text("Enhancements to the Park")
     .attr("x", width + 50)
-    .attr("y", height + margin.bottom)
+    .attr("y", height + margin.bottom + 20)
     .style("fill", 'black')
     .style("font-weight","bold")
     .style("text-anchor","end");
@@ -396,9 +396,9 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
           var xAxis = svg2.append('g')
           //Add label
           .append("text")
-          .text("Things Added to Park")
+          .text("Enhancements to the Park")
           .attr("x", width + 50)
-          .attr("y", height + margin.bottom)
+          .attr("y", height + margin.bottom + 20)
           .style("fill", 'black')
           .style("font-weight","bold")
           .style("text-anchor","end");
