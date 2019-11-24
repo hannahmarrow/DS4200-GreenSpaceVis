@@ -49,19 +49,21 @@ transform: scale(.7);
 .groupbar-holder {
   flex: 1;
 }
-
-
+/* Tooltip for givng details on demand - type, count, responses*/
 div.tooltip {
-    position: absolute;
-    text-align: center;
-    width: max-content;
-    height: max-content;
-    padding: 2px;
-    font: 12px sans-serif;
-    background: yellow;
-    border: 0px;
-    border-radius: 8px;
+	position: absolute;
+	text-align: center;
+	width: 97px; /*set a consistent width */
+	height: max-content; /* height grows with more content */
+	padding: 2px;
+	font: 12px sans-serif;
+	background: #edc351;
+	border: 0px;
+	border-radius: 8px;
 	pointer-events: none;
+	display: inline;
+	white-space: pre-wrap;    
+	margin: 20px 20px 20px 20px;
 }
 
 /* Fork on GitHub ribbon via https://codepo8.github.io/css-fork-on-github-ribbon/# */  
