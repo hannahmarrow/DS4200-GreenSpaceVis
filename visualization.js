@@ -507,7 +507,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("alignment-baseline", "middle")
     ;
 
-    var groups = svg2.selectAll("foo")
+    var groups = svg2.selectAll("isograph")
       .data(data)
       .enter()
       .append("g")
@@ -538,7 +538,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
           .style("stroke-width", "0");
       });
 
-    var images = groups.selectAll("bar")
+    var images = groups.selectAll("iso_images")
       .data(data => d3.range(parseInt(data.total_responses, 10)))
       .enter()
       .append("svg:image")
