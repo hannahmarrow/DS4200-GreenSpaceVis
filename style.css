@@ -114,7 +114,7 @@ div.tooltip {
 }
 @media screen and (min-width:1000px){
 	#forkongithub{
-		position:absolute;
+		position:fixed;
 		display:block;
 		top:0;
 		right:0;
