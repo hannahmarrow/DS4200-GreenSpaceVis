@@ -311,12 +311,12 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .attr("height", 15)
     .style("fill", in_person_pedestrian_color)
    //in person resident square
-   svg.append("rect")
-    .attr("x", rectX)
-    .attr("y", rectY + 30)
-    .attr("width", 15)
-    .attr("height", 15)
-    .style("fill", in_person_resident_color)
+  svg.append("rect")
+  .attr("x", rectX)
+  .attr("y", rectY + 30)
+  .attr("width", 15)
+  .attr("height", 15)
+  .style("fill", in_person_resident_color)
   // online resident square
   svg.append("rect")
     .attr("x", rectX)
@@ -325,93 +325,94 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .attr("height", 15)
     .style("fill", online_resident_color)
   // in person pedestrian text
-   svg.append("text")
+  svg.append("text")
+  .attr("x", rectTextX)
+  .attr("y", rectTextY + 30)
+  .text("In-Person Resident")
+  .style("font-size", "20px")
+  .attr("alignment-baseline", "middle")
+  // in person resident text
+  svg.append("text")
+  .attr("x", rectTextX)
+  .attr("y", rectTextY)
+  .text("In-Person Pedestrian")
+  .style("font-size", "20px")
+  .attr("alignment-baseline", "middle");
+  // online resident text
+  svg.append("text")
     .attr("x", rectTextX)
-    .attr("y", rectTextY + 30)
-    .text("In-Person Resident")
+    .attr("y", rectTextY + 60)
+    .text("Online Resident")
     .style("font-size", "20px")
     .attr("alignment-baseline", "middle")
-  // in person resident text
-   svg.append("text")
-    .attr("x", rectTextX)
-    .attr("y", rectTextY)
-    .text("In-Person Pedestrian")
-    .style("font-size", "20px")
-    .attr("alignment-baseline", "middle");
-    // online resident text
-    svg.append("text")
-      .attr("x", rectTextX)
-      .attr("y", rectTextY + 60)
-      .text("Online Resident")
-      .style("font-size", "20px")
-      .attr("alignment-baseline", "middle")
 
 
-    var svg2 = d3.select('#isograph')
-      .append('svg')
-      .attr("preserveAspectRatio", "xMidYMid meet")
-      .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom + 120]
-      .join(' '));
+  var svg2 = d3.select('#isograph')
+    .append('svg')
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom + 120]
+    .join(' '));
 
-    //set the font size of the x axis
-    svg2.select(".x.axis")
-      .selectAll("text")
-      .style("font-size", "15px");
+  //set the font size of the x axis
+  svg2.select(".x.axis")
+    .selectAll("text")
+    .style("font-size", "15px");
     // Define Scales
-    var yScale2 = d3.scaleLinear()
-      .domain([0, 20])
-      .range([height - margin.bottom, margin.top])
+  var yScale2 = d3.scaleLinear()
+    .domain([0, 20])
+    .range([height - margin.bottom, margin.top])
 
-    var xScale = d3.scaleBand()
-      .domain(data.map(function(d) {
-        return d.Things_Added_to_the_Park;
-      }))
-      .range([margin.left, width - margin.right])
-      .padding(0.5);
+  var xScale = d3.scaleBand()
+    .domain(data.map(function(d) {
+      return d.Things_Added_to_the_Park;
+    }))
+    .range([margin.left, width - margin.right])
+    .padding(0.5);
 
-    //Draw Axes
-    var yAxis = svg2.append('g')
-      .attr("transform", `translate(${margin.left},0)`)
-      .call(d3.axisLeft().scale(yScale2))
-      .style('font-size', "17px")
-     //Add label
-     .append("text")
-     .text("Number of Responses")
-     .attr("x", 90)
-     .attr("y", 15)
-     .style("fill", 'black')
-     .style("font-weight","bold");
+  //Draw Axes
+  var yAxis = svg2.append('g')
+    .attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft().scale(yScale2))
+    .style('font-size', "17px")
+    //Add label
+    .append("text")
+    .text("Number of Responses")
+    .attr("x", 90)
+    .attr("y", 15)
+    .style("fill", 'black')
+    .style("font-weight","bold");
 
-    var xAxis = svg2.append('g')
-      .attr("transform", `translate(0,${height - margin.bottom})`)
-      .call(d3.axisBottom().scale(xScale))
-      .style('font-size', "25px").selectAll("text")	
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", ".15em")
-      .attr("transform", function(d) {
-          return "rotate(-35)" 
-          })
+  var xAxis = svg2.append('g')
+    .attr("transform", `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom().scale(xScale))
+    .style('font-size', "25px").selectAll("text")	
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", function(d) {
+        return "rotate(-35)" 
+      })    
 
-          var xAxis = svg2.append('g')
-          //Add label
-          .append("text")
-          .text("Enhancements to the Park")
-          .attr("x", width + 50)
-          .attr("y", height + margin.bottom + 20)
-          .style("fill", 'black')
-          .style("font-weight","bold")
-          .style("text-anchor","end");
+  //making a new variable so that the X Axis label does not get rotated also
+  var xAxis_label = svg2.append('g')
+  //Add label
+    .append("text")
+    .text("Enhancements to the Park")
+    .attr("x", width + 50)
+    .attr("y", height + margin.bottom + 20)
+    .style("fill", 'black')
+    .style("font-weight","bold")
+    .style("text-anchor","end");
 
-    //Draw isotypes
-    var isotypes = svg2.selectAll('.total')
-      .data(data)
-      .enter()
-    //legend variables
-    var imageY = 80;
-    var startingTextY = 90;
-    var imageX = 880;
-    var startingTextX = 910;
+  //Draw isotypes
+  var isotypes = svg2.selectAll('.total')
+    .data(data)
+    .enter()
+  //legend variables
+  var imageY = 80;
+  var startingTextY = 90;
+  var imageX = 880;
+  var startingTextX = 910;
 
     // Handmade legends
     //Isotype Legend Title
