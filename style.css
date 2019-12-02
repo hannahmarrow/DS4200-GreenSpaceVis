@@ -9,6 +9,10 @@ h1, h2, h3 {
 	line-height: 1.2
 }
 
+p {
+	text-indent: 10%;
+}
+
 
 /* Your text should be in a nice narrow column */
 .content-column {
