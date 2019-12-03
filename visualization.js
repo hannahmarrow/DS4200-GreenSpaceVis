@@ -269,8 +269,8 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .classed("faded", true);
         //also highlight the amount of pictures on the corresponding isobar
         // by changing the opacity of the number of responses to 1, and the rest to 0.2
-        d3.select(".bar" + i)
-          .selectAll("image")
+      d3.select(".bar" + i)
+        .selectAll("image")
           .classed("full-opacity", (d, i) => {
             return i < ipr_num_responses ? true : false;
           })
@@ -497,22 +497,37 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         div.transition()
           .duration(200)
           .style("opacity", .9);
-          //say the Total + response count
+        //say the Total + response count
         div.html("Total:" + "<br/>" + data.total_responses)
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
-          d3.selectAll(".category"+ i)
+        //highlight the corresponding bars in grouped bar chart
+        d3.selectAll(".category"+ i)
           .classed("unhighlighted", false)
           .classed("highlighted", true);
+        //all other bars should fade
+        d3.selectAll("image")
+          .classed("full-opacity", false)
+          .classed("faded", true);
+        //change the selected bar's opacity class to full
+        d3.select(".bar" + i)
+          .selectAll("image")
+          .classed("full-opacity", true)
+          .classed("faded", false);
       })
       //mouse out functions- go back to normal
       .on("mouseout", function(data, i) {
         div.transition()
           .duration(500)
           .style("opacity", 0);
-          d3.selectAll(".category" + i)
+        //change the highlight class of the grouped bars back to normal
+        d3.selectAll(".category" + i)
           .classed("highlighted", false)
-          .classed("unhighlighted", true);
+          .classed("unhighlighted", true)
+        //reset opacity of all images to full
+        d3.selectAll("image")
+          .classed("full-opacity", true)
+          .classed("faded", false)
       });
 
     // images for the isograph chart
@@ -530,7 +545,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         return d3.select(this.parentNode).datum().images
       })
       .classed("full-opacity", true)
-      .classed("faded", false)
+      .classed("faded", false);
 
   // title for the iso bar chart
   var iso_bar_title = svg2
@@ -541,5 +556,4 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .style("font-size", "25px")
     .style("font-weight", "bold")
     .text("What Enhancements and Additions Do People Want in Chester Park?");
-
 });

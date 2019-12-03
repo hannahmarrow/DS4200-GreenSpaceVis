@@ -45,6 +45,14 @@ p {
 	opacity: 0.3;
 }
 
+.full-opacity2 {
+	opacity: 0.3;
+}
+
+.faded2 {
+	opacity: 1;
+}
+
 /* Your text should be in a nice narrow column */
 .content-column {
 	max-width: 650px;
