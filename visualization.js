@@ -11,16 +11,6 @@ const margin = {
   right: 30
 };
 
-//Color Variables
-// coral
-let in_person_pedestrian_color = "#FC8D62";
-// green
-let in_person_resident_color = '#66C2A5';
-//light blue
-let online_resident_color = "#8DA0CB";
-// dark blue
-let highlight_color = "#154B4F";
-
 // set SVG variable with height, width, bg color
 let svg = d3.select('#groupbar')
   .append('svg')
@@ -294,10 +284,10 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .text("Response Counts for Different Survey Groups");
 
   //legend variables
-  var rectX = 1000;
-  var rectTextX = 1030;
-  var rectY = 50;
-  var rectTextY = 60;
+  let rectX = 1000;
+  let rectTextX = 1030;
+  let rectY = 50;
+  let rectTextY = 60;
 
     // Programmatically generating a legend for the bar chart using functions and pulling data from CSV
     function bar_legend() { 
@@ -310,8 +300,17 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .style("font-size", "20px")
         .attr("alignment-baseline", "middle");
 
-      // append the color rectangles to the legend
+      //Color Variables for legend
+      // coral
+      let in_person_pedestrian_color = "#FC8D62";
+      // green
+      let in_person_resident_color = '#66C2A5';
+      //light blue
+      let online_resident_color = "#8DA0CB";
+      //add these colors to an array to call from later
       let color_array = [in_person_pedestrian_color, in_person_resident_color, online_resident_color]
+
+      // append the color rectangles to the legend
       let bar_legend_rect = svg.selectAll('.legend_entry')
         .data(data)
         .enter()
@@ -414,10 +413,10 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .data(data)
     .enter()
   //legend variables
-  var imageY = 50;
-  var startingTextY = 60;
-  var imageX = 880;
-  var startingTextX = 910;
+  let imageY = 50;
+  let startingTextY = 60;
+  let imageX = 880;
+  let startingTextX = 910;
 
   // Programmatically generating a legend for the isograph using functions and pulling data from CSV
   function legend() { 
