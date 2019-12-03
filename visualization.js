@@ -94,6 +94,8 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .append('rect')
     //set a class for this bar for linking purposes
     .attr("class", (data, i) => "category" + i)
+    // class this bar as a pedestrian bar
+    .classed("pbar", true)
     //x is the category
     .attr("x", function(d) {
       return xScale(d.Things_Added_to_the_Park);
@@ -103,8 +105,6 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       return yScale(d.in_person_pedestrian);
     })
     .attr("width", xScale.bandwidth() / 4)
-    //set the color of the bar
-    .attr('fill', in_person_pedestrian_color)
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.in_person_pedestrian);
     })
@@ -125,11 +125,11 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .style("top", (d3.event.pageY - 28) + "px");
       d3.select(this)
       //change color of outline of in person pedestrian bar to highlight when mouse over
+        .classed("unhighlighted", false)
+        .classed("highlighted", true)
         .transition()
         .delay(100)
-        .duration(100)
-        .style("stroke", highlight_color)
-        .style("stroke-width", "5");
+        .duration(100);
         //also highlight the amount of pictures on the corresponding isobar
         // by changing the opacity of the number of responses to 1, and the rest to 0.2
       d3.select(".bar" + i)
@@ -146,9 +146,9 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .style("opacity", 0);
       // on mouseout - change color back to original
       d3.select(this)
-        .transition()
-        .style("stroke", in_person_pedestrian_color)
-        .style("stroke-width", "0");
+        .classed("highlighted", false)
+        .classed("unhighlighted", true)
+        .transition();
       //on mouseout - reset opacity
       d3.select(".bar" + i)
       .selectAll("image")
@@ -162,6 +162,8 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .append('rect')
     //set the class for this bar for linking purposes
     .attr("class", (data, i) => "category" + i)
+    //class this as an online resident bar
+    .classed("orbar", true)
     //x is the category
     .attr("x", function(d) {
       return xScale(d.Things_Added_to_the_Park) + 2 *  xScale.bandwidth() / 4;
@@ -171,8 +173,6 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       return yScale(d.online_resident);
     })
     .attr("width", xScale.bandwidth() / 4)
-    //set the color of this bar
-    .attr('fill', online_resident_color)
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.online_resident);
     })
@@ -191,11 +191,11 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .style("top", (d3.event.pageY - 28) + "px");
       d3.select(this)
         // change color of outline to highlight when mouse over
+        .classed("unhighlighted", false)
+        .classed("highlighted", true)
         .transition()
         .delay(100)
-        .duration(100)
-        .style("stroke", highlight_color)
-        .style("stroke-width", "5");
+        .duration(100);
         //also highlight the amount of pictures on the corresponding isobar
         // by changing the opacity of the number of responses to 1, and the rest to 0.2
         d3.select(".bar" + i)
@@ -210,9 +210,9 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .style("opacity", 0);
       // on mouseout - change color back to original
       d3.select(this)
-        .transition()
-        .style("stroke", online_resident_color)
-        .style("stroke-width", "0");
+        .classed("highlighted", false)
+        .classed("unhighlighted", true)
+        .transition();
       //on mouseout - reset opacity
       d3.select(".bar" + i)
       .selectAll("image")
@@ -226,6 +226,8 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .append('rect')
     //set the class for this for linking purposes
     .attr("class", (data, i) => "category" + i)
+    //class this bar as an in person resident bar
+    .classed("iprbar", true)
     //x is the category
     .attr("x", function(d) {
       return xScale(d.Things_Added_to_the_Park) + (xScale.bandwidth() / 4);
@@ -235,7 +237,6 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       return yScale(d.in_person_resident);
     })
     .attr("width", xScale.bandwidth() / 4)
-    .attr('fill', in_person_resident_color)
     .attr("height", function(d) {
       return height - margin.bottom - yScale(d.in_person_resident);
     })
@@ -252,11 +253,11 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .style("top", (d3.event.pageY - 28) + "px");
       d3.select(this)
       // change color of outline to highlight when mouse over
+        .classed("unhighlighted", false)
+        .classed("highlighted", true)
         .transition()
         .delay(100)
-        .duration(100)
-        .style("stroke", highlight_color)
-        .style("stroke-width", "5");
+        .duration(100);
         //also highlight the amount of pictures on the corresponding isobar
         // by changing the opacity of the number of responses to 1, and the rest to 0.2
         d3.select(".bar" + i)
@@ -272,9 +273,9 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .style("opacity", 0);
       // on mouseout - change color back to original
       d3.select(this)
-        .transition()
-        .style("stroke", in_person_resident_color)
-        .style("stroke-width", "0");
+        .classed("highlighted", false)
+        .classed("unhighlighted", true)
+        .transition();
       //on mouseout - reset opacity
       d3.select(".bar" + i)
         .selectAll("image")
@@ -526,8 +527,8 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
           d3.selectAll(".category"+ i)
-          .style("stroke", highlight_color)
-          .style("stroke-width", "5");
+          .classed("unhighlighted", false)
+          .classed("highlighted", true);
       })
       //mouse out functions- go back to normal
       .on("mouseout", function(data, i) {
@@ -535,8 +536,8 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
           .duration(500)
           .style("opacity", 0);
           d3.selectAll(".category" + i)
-          .style("stroke", in_person_resident_color)
-          .style("stroke-width", "0");
+          .classed("highlighted", false)
+          .classed("unhighlighted", true);
       });
 
     var images = groups.selectAll("iso_images")

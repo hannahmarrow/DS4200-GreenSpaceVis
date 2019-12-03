@@ -13,6 +13,29 @@ p {
 	text-indent: 10%;
 }
 
+.pbar {
+	fill: #FC8D62;
+	stroke: #FC8D62;
+}
+
+.iprbar {
+	fill: #66C2A5;
+	stroke: #66C2A5;
+}
+
+.orbar {
+	fill: #8DA0CB;
+	stroke: #8DA0CB;
+}
+
+.highlighted {
+	stroke: #154B4F;
+	stroke-width: 5px;
+}
+
+.unhighlighted {
+	stroke-width: 0px;
+}
 
 /* Your text should be in a nice narrow column */
 .content-column {
