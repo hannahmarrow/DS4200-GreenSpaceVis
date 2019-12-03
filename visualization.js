@@ -409,105 +409,54 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
     .data(data)
     .enter()
   //legend variables
-  var imageY = 80;
-  var startingTextY = 90;
+  var imageY = 50;
+  var startingTextY = 60;
   var imageX = 880;
   var startingTextX = 910;
 
-    // Handmade legends
-    //Isotype Legend Title
-    svg2.append("text")
-      .attr("x", startingTextX)
-      .attr("y", startingTextY - 30)
-      .text("Legend: ")
-      .style("font-size", "20px")
-      .attr("alignment-baseline", "middle")
-      //add bench image
-    svg2.append("image")
-      .attr("href", "images/bench.png")
-      .attr("width", 20)
-      .attr("height", 20)
-      .attr("x", imageX)
-      .attr("y", imageY)
-      //add rest area text
+  // Programmatically generating a legend for the isograph using functions and pulling data from CSV
+  function legend() { 
     svg2.append("text")
       .attr("x", startingTextX)
       .attr("y", startingTextY)
-      .text("= 1 response for Rest Areas")
+      .text("Legend: ")
       .style("font-size", "20px")
-      .attr("alignment-baseline", "middle")
-      //add tree image
-    svg2.append("image")
-      .attr("href", "images/tree.png")
-      .attr("width", 20)
-      .attr("height", 20)
-      .attr("x", imageX)
-      .attr("y", imageY + 30)
-      //add tree text
-    svg2.append("text")
-      .attr("x", startingTextX)
-      .attr("y", startingTextY + 30)
-      .text("= 1 response for Trees/Plants")
-      .style("font-size", "20px")
-      .attr("alignment-baseline", "middle")
-      //add art image
-    svg2.append("image")
-      .attr("href", "images/art.png")
-      .attr("width", 20)
-      .attr("height", 20)
-      .attr("x", imageX)
-      .attr("y", imageY + 60)
-      //add art text
-    svg2.append("text")
-      .attr("x", startingTextX)
-      .attr("y", startingTextY + 60)
-      .text("= 1 response for Art Installations")
-      .style("font-size", "20px")
-      .attr("alignment-baseline", "middle")
-      //add play image
-    svg2.append("image")
-      .attr("href", "images/play.png")
-      .attr("width", 20)
-      .attr("height", 20)
-      .attr("x", imageX)
-      .attr("y", imageY + 90)
-      //add play text
-    svg2.append("text")
-      .attr("x", startingTextX)
-      .attr("y", startingTextY + 90)
-      .text("= 1 response for Play Area for Kids")
-      .style("font-size", "20px")
-      .attr("alignment-baseline", "middle")
-      //add fountain image
-    svg2.append("image")
-      .attr("href", "images/fountain.png")
-      .attr("width", 20)
-      .attr("height", 20)
-      .attr("x", imageX)
-      .attr("y", imageY + 120)
-      //add fountain text
-    svg2.append("text")
-      .attr("x", startingTextX)
-      .attr("y", startingTextY + 120)
-      .text("= 1 response for Fountains")
-      .style("font-size", "20px")
-      .attr("alignment-baseline", "middle")
-      //add Other image
-    svg2.append("image")
-      .attr("href", "images/other.png")
-      .attr("width", 20)
-      .attr("height", 20)
-      .attr("x", imageX)
-      .attr("y", imageY + 150)
-      //add Other text
-    svg2.append("text")
-      .attr("x", startingTextX)
-      .attr("y", startingTextY + 150)
-      .text("= 1 response for Other")
-      .style("font-size", "20px")
-      .attr("alignment-baseline", "middle")
-    ;
+      .attr("alignment-baseline", "middle");
+    // append the images to the legend
+    let legend_pic = svg2.selectAll('.legend_entry')
+      .data(data)
+      .enter()
+      .append("image")
+        .attr("href", function(d) {
+          return d.images;
+        })
+        .attr("width", 20)
+        .attr("height", 20)
+        .attr("x", imageX)
+        .attr("y", function(d) {
+          imageY = imageY + 30; // increase the y position each time
+          return imageY;
+        })
+    // append the text to the legend for each category
+    let legend_text = svg2.selectAll('.legend_entry')
+        .data(data)
+        .enter()
+        .append("text")
+          .attr("x", startingTextX)
+          .attr("y", function(d){
+            startingTextY = startingTextY + 30; //increase the y position each time
+            return startingTextY;
+          })
+          .text(function(d){
+            return "= 1 response for " + d.Things_Added_to_the_Park;
+          })
+          .style("font-size", "20px")
+          .attr("alignment-baseline", "middle")
+    }
+    //call the legend function for it to appear
+    legend();
 
+    // hovering actions for the isograph chart
     var groups = svg2.selectAll("isograph")
       .data(data)
       .enter()
@@ -539,6 +488,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
           .style("stroke-width", "0");
       });
 
+    // images for the isograph chart
     var images = groups.selectAll("iso_images")
       .data(data => d3.range(parseInt(data.total_responses, 10)))
       .enter()
