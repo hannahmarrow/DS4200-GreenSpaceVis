@@ -121,14 +121,21 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .transition()
         .delay(100)
         .duration(100);
-        //also highlight the amount of pictures on the corresponding isobar
-        // by changing the opacity of the number of responses to 1, and the rest to 0.2
+      //set the opacity for the remaining bars to be lighter, classes as not selected
+      d3.selectAll("image")
+        .classed("full-opacity", false)
+        .classed("faded", true);
+      //also highlight the amount of pictures on the corresponding isobar
+      // by changing the opacity of the number of responses to 1, and the rest to 0.2
       d3.select(".bar" + i)
         .selectAll("image")
-        .style("opacity", (d, i) => {
-          return i < num_responses ? 1 : 0.3
-        });
 
+        .classed("full-opacity", (d, i) => {
+          return i < num_responses ? true : false;
+        })
+        .classed("faded", (d, i) => {
+          return i < num_responses ? false : true;
+        })
     })
     //when the cursor stops hovering, set back to normal
     .on("mouseout", function(d, i) {
@@ -140,10 +147,10 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .classed("highlighted", false)
         .classed("unhighlighted", true)
         .transition();
-      //on mouseout - reset opacity
-      d3.select(".bar" + i)
-        .selectAll("image")
-        .style("opacity", 1)
+      //reset the opacity 
+      d3.selectAll("image")
+        .classed("full-opacity", true)
+        .classed("faded", false);
     })
   //Online Resident bar
   var bar2 = svg.selectAll('.orbar')
@@ -187,13 +194,20 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .transition()
         .delay(100)
         .duration(100);
+      //set the opacity for the remaining bars to be lighter, classes as not selected
+      d3.selectAll("image")
+      .classed("full-opacity", false)
+      .classed("faded", true);
         //also highlight the amount of pictures on the corresponding isobar
         // by changing the opacity of the number of responses to 1, and the rest to 0.2
         d3.select(".bar" + i)
           .selectAll("image")
-          .style("opacity", (d,i) => {
-            return i < or_num_responses ? 1 : 0.3
-          });
+          .classed("full-opacity", (d, i) => {
+            return i < or_num_responses ? true : false;
+          })
+          .classed("faded", (d, i) => {
+            return i < or_num_responses ? false : true;
+          })
         })
     .on("mouseout", function(d, i) {
       div.transition()
@@ -204,10 +218,10 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .classed("highlighted", false)
         .classed("unhighlighted", true)
         .transition();
-      //on mouseout - reset opacity
-      d3.select(".bar" + i)
-        .selectAll("image")
-        .style("opacity", 1)
+      //reset the opacity 
+      d3.selectAll("image")
+        .classed("full-opacity", true)
+        .classed("faded", false);
     })
   //in person resident bar
   var bar3 = svg.selectAll('.iprbar')
@@ -249,13 +263,20 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .transition()
         .delay(100)
         .duration(100);
+      //set the opacity for the remaining bars to be lighter, classes as not selected
+      d3.selectAll("image")
+      .classed("full-opacity", false)
+      .classed("faded", true);
         //also highlight the amount of pictures on the corresponding isobar
         // by changing the opacity of the number of responses to 1, and the rest to 0.2
         d3.select(".bar" + i)
           .selectAll("image")
-          .style("opacity", (d,i) => {
-            return i < ipr_num_responses ? 1 : 0.3
-          });
+          .classed("full-opacity", (d, i) => {
+            return i < ipr_num_responses ? true : false;
+          })
+          .classed("faded", (d, i) => {
+            return i < ipr_num_responses ? false : true;
+          })
         })
     //hover out actions
     .on("mouseout", function(d, i) {
@@ -267,10 +288,10 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .classed("highlighted", false)
         .classed("unhighlighted", true)
         .transition();
-      //on mouseout - reset opacity
-      d3.select(".bar" + i)
-        .selectAll("image")
-        .style("opacity", 1)
+      //reset the opacity 
+      d3.selectAll("image")
+        .classed("full-opacity", true)
+        .classed("faded", false);
     })
 
   // title for the grouped bar chart
@@ -441,6 +462,8 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
           imageY = imageY + 30; // increase the y position each time
           return imageY;
         })
+        .classed("full-opacity", true)
+        .classed("faded", false);
     // append the text to the legend for each category
     let legend_text = svg2.selectAll('.legend_entry')
         .data(data)
@@ -506,6 +529,8 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .attr("xlink:href", function(data) {
         return d3.select(this.parentNode).datum().images
       })
+      .classed("full-opacity", true)
+      .classed("faded", false)
 
   // title for the iso bar chart
   var iso_bar_title = svg2
