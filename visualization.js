@@ -296,58 +296,61 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
   //legend variables
   var rectX = 1000;
   var rectTextX = 1030;
-  var rectY = 80;
-  var rectTextY = 90;
-  // Grouped Bar legend
-  svg.append("text")
-    .attr("x", rectTextX)
-    .attr("y", rectTextY - 30)
-    .text("Legend: ")
-    .style("font-size", "20px")
-    .attr("alignment-baseline", "middle")
-  // in person pedestrian square
-  svg.append("rect")
-    .attr("x", rectX)
-    .attr("y", rectY)
-    .attr("width", 15)
-    .attr("height", 15)
-    .style("fill", in_person_pedestrian_color)
-  //in person resident square
-  svg.append("rect")
-    .attr("x", rectX)
-    .attr("y", rectY + 30)
-    .attr("width", 15)
-    .attr("height", 15)
-    .style("fill", in_person_resident_color)
-  // online resident square
-  svg.append("rect")
-    .attr("x", rectX)
-    .attr("y", rectY + 60)
-    .attr("width", 15)
-    .attr("height", 15)
-    .style("fill", online_resident_color)
-  // in person pedestrian text
-  svg.append("text")
-    .attr("x", rectTextX)
-    .attr("y", rectTextY + 30)
-    .text("In-Person Resident")
-    .style("font-size", "20px")
-    .attr("alignment-baseline", "middle")
-  // in person resident text
-  svg.append("text")
-    .attr("x", rectTextX)
-    .attr("y", rectTextY)
-    .text("In-Person Pedestrian")
-    .style("font-size", "20px")
-    .attr("alignment-baseline", "middle");
-  // online resident text
-  svg.append("text")
-    .attr("x", rectTextX)
-    .attr("y", rectTextY + 60)
-    .text("Online Resident")
-    .style("font-size", "20px")
-    .attr("alignment-baseline", "middle")
+  var rectY = 50;
+  var rectTextY = 60;
 
+    // Programmatically generating a legend for the bar chart using functions and pulling data from CSV
+    function bar_legend() { 
+      
+      // append legend title
+      svg.append("text")
+        .attr("x", rectTextX)
+        .attr("y", rectTextY)
+        .text("Legend: ")
+        .style("font-size", "20px")
+        .attr("alignment-baseline", "middle");
+
+      // append the color rectangles to the legend
+      let color_array = [in_person_pedestrian_color, in_person_resident_color, online_resident_color]
+      let bar_legend_rect = svg.selectAll('.legend_entry')
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", rectX)
+        .attr("y", function(d,i) {
+          rectY = rectY + 30; // increase the y position each time
+          return rectY;
+        })
+        .attr("width", 15)
+        .attr("height", 15)
+        .style("fill", function(d,i) {
+          if (i < 3) {
+            return color_array[i]; //get the color of the rect from the color array
+          }
+          else {
+            return "#FFFFFF"; // for the rest of the squares, return white (since it will loop through 6 times, but we only want 3)
+          }
+        })
+
+      // append the text to the legend for each category
+      let text_array = ["In-Person Pedestrian", "In-Person Resident", "Online Resident"]
+      let bar_legend_text = svg.selectAll('.legend_entry')
+          .data(data)
+          .enter()
+          .append("text")
+            .attr("x", rectTextX)
+            .attr("y", function(d){
+              rectTextY = rectTextY + 30; //increase the y position each time
+              return rectTextY;
+            })
+            .text(function(d,i){
+              return text_array[i]; //survey response type
+            })
+            .style("font-size", "20px")
+            .attr("alignment-baseline", "middle")
+      }
+      //call the bar legend function for it to appear
+      bar_legend();
 
   var svg2 = d3.select('#isograph')
     .append('svg')
