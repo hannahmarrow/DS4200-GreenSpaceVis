@@ -37,6 +37,14 @@ p {
 	stroke-width: 0px;
 }
 
+.full-opacity {
+	opacity: 1;
+}
+
+.faded {
+	opacity: 0.3;
+}
+
 /* Your text should be in a nice narrow column */
 .content-column {
 	max-width: 650px;
