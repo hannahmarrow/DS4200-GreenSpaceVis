@@ -97,21 +97,23 @@
 		<h1>Visualization explanation</h1>
 		<h3>UI Walkthrough</h3>
 		<p>Users can hover over any of the bars in the iso-type bar chart to see what the value of that category is (how
-			many
-			responses total for each survey type for that category). When users hover over the iso-type bar chart, the
-			corresponding bars for that
-			same category in the neighboring grouped bar chart get highlighted, thus introducing a linking effect. This
-			helps show how the response
-			types were split for that category. For example, if the user hovers over the "Trees/Plants" iso-type bar,
-			then the "Trees/Plants" bars in the
-			grouped bar chart all get highlighed simultaneously, showing the breakdown of responses.
+			many responses total for each survey type for that category) in a tool tip. Additionally, when the user hovers 
+			over one iso-type bar, the other iso-type bars are faded, making it easier for the user to focus on that one 
+			bar of interest. When users hover over the iso-type bar chart, the corresponding bars for that same category 
+			in the neighboring grouped bar chart get highlighted, thus introducing a linking effect. This helps show how 
+			the response types were split for that category. For example, if the user hovers over the "Trees/Plants" iso-type 
+			bar, then the "Trees/Plants" bars in the grouped bar chart all get highlighed simultaneously, showing the 
+			breakdown of responses.
 		</p>
 		<p>
-			When users hover over any of the bars in the grouped bar chart, the number of responses is also shown in a
-			tool tip, along with the response type.
-			We will implement linking to the iso-type bar chart as well, having the corresponding iso-type bar highlight
-			the amount of responses for the
-			individual bar that is hovered over.
+			When users hover over any of the individual bars in the grouped bar chart, the number of responses is also shown in a
+			tool tip, along with the response type. Additionally, each bar in the grouped bar chart is linked to the iso-type bar chart,
+			such that when an individual bar is hovered over, only that amount of pictures on the corresponding iso-type bar chart is 
+			completely opaque, and every single other picture in the iso-type bar chart is faded. For example, if one were to hover over 
+			the in-person resident bar for the benches response in the grouped bar chart, only one bench in the iso-type bar chart is 
+			completely opaque, and every single other picture is faded. This makes it easy for the user to get a bigger picture view of 
+			how many people of each survey group picked a certain enhancement in relation to the total number of responses. It also 
+			reduces noise from the other iso-type bars, making it easier to focus in on one survey type for one enhancement.
 		</p>
 
 		<h1>Data Analysis</h1>
@@ -130,10 +132,24 @@
 
 		<h1>Task Analysis</h1>
 
-		<p>The main task that we wanted to address was the question of "What things do current residents want to see
-			added
-			to the green spaces in Chester Square Park?" The low level analytic task is to identify, the mid-level
-			search task is to explore, and the high level analyze task is to discover.
+		<p>The main task that we wanted to address was the question of "What enhancements do current residents want to see
+			added to the green spaces in Chester Square Park?" At a high level, our task was to discover some different options
+			of enhancements that people may want to see added to the park. To do this, we came up with some ideas ourselves,
+			talked with Carol Blair of the Chester Square Neighborhood Association, and allowed for survey respondants to
+			give their own ideas with a fill-in "other" survey response option. So, the options that we discovered became the
+			x-axis of both of our visualizations.
+		</p>
+		<p>At the mid-level, our task was to explore the options that we had discovered at the high level. This is where our
+			survey came in handy. We distributed a survey to residents of Chester Square online and in person, and to pedestrians
+			in Chester Park in person, and one of the questions was our main task question. Using our tool, one can explore the
+			different options that people voted for, and even break them down by survey type.
+		</p>
+		<p>At the low level, our task was to ultimately identify the enhancement that most people would want to see added to the 
+			park. And the answer, ultimately, depends on which survey group you're focusing on. Using our visualization, it is 
+			clear that overall, people want more trees and plants added to Chester Park. However, looking at the response breakdowns
+			in the grouped bar chart, the majority of online residents and in-person pedestrians want more trees and plants added 
+			to the park, but the majority of in-person residents want art installations added to the park. So, our main task does 
+			not have a clear cut answer -- it depends on which group of people you're focusing on.
 		</p>
 
 		<h1>Design Process</h1>
