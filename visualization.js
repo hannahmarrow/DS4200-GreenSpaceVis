@@ -122,13 +122,13 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .delay(100)
         .duration(100);
       //set the opacity for the remaining bars to be lighter, classes as not selected
-      d3.selectAll("image")
+      d3.selectAll(".isoimage")
         .classed("full-opacity", false)
         .classed("faded", true);
       //also highlight the amount of pictures on the corresponding isobar
       // by changing the opacity of the number of responses to 1, and the rest to 0.2
       d3.select(".bar" + i)
-        .selectAll("image")
+        .selectAll(".isoimage")
 
         .classed("full-opacity", (d, i) => {
           return i < num_responses ? true : false;
@@ -148,7 +148,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .classed("unhighlighted", true)
         .transition();
       //reset the opacity 
-      d3.selectAll("image")
+      d3.selectAll(".isoimage")
         .classed("full-opacity", true)
         .classed("faded", false);
     })
@@ -195,13 +195,13 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .delay(100)
         .duration(100);
       //set the opacity for the remaining bars to be lighter, classes as not selected
-      d3.selectAll("image")
+      d3.selectAll(".isoimage")
       .classed("full-opacity", false)
       .classed("faded", true);
         //also highlight the amount of pictures on the corresponding isobar
         // by changing the opacity of the number of responses to 1, and the rest to 0.2
         d3.select(".bar" + i)
-          .selectAll("image")
+          .selectAll(".isoimage")
           .classed("full-opacity", (d, i) => {
             return i < or_num_responses ? true : false;
           })
@@ -219,7 +219,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .classed("unhighlighted", true)
         .transition();
       //reset the opacity 
-      d3.selectAll("image")
+      d3.selectAll(".isoimage")
         .classed("full-opacity", true)
         .classed("faded", false);
     })
@@ -264,13 +264,13 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .delay(100)
         .duration(100);
       //set the opacity for the remaining bars to be lighter, classes as not selected
-      d3.selectAll("image")
+      d3.selectAll(".isoimage")
       .classed("full-opacity", false)
       .classed("faded", true);
         //also highlight the amount of pictures on the corresponding isobar
         // by changing the opacity of the number of responses to 1, and the rest to 0.2
       d3.select(".bar" + i)
-        .selectAll("image")
+        .selectAll(".isoimage")
           .classed("full-opacity", (d, i) => {
             return i < ipr_num_responses ? true : false;
           })
@@ -289,7 +289,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
         .classed("unhighlighted", true)
         .transition();
       //reset the opacity 
-      d3.selectAll("image")
+      d3.selectAll(".isoimage")
         .classed("full-opacity", true)
         .classed("faded", false);
     })
@@ -452,6 +452,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .data(data)
       .enter()
       .append("image")
+      .attr("class", "legendimage")
         .attr("href", function(d) {
           return d.images;
         })
@@ -506,12 +507,12 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
           .classed("unhighlighted", false)
           .classed("highlighted", true);
         //all other bars should fade
-        d3.selectAll("image")
+        d3.selectAll(".isoimage")
           .classed("full-opacity", false)
           .classed("faded", true);
         //change the selected bar's opacity class to full
         d3.select(".bar" + i)
-          .selectAll("image")
+          .selectAll(".isoimage")
           .classed("full-opacity", true)
           .classed("faded", false);
       })
@@ -525,7 +526,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
           .classed("highlighted", false)
           .classed("unhighlighted", true)
         //reset opacity of all images to full
-        d3.selectAll("image")
+        d3.selectAll(".isoimage")
           .classed("full-opacity", true)
           .classed("faded", false)
       });
@@ -536,6 +537,7 @@ d3.csv("data/Q1/clean_greenspace.csv").then(function(data) {
       .enter()
       .append("svg:image")
       .attr("class", (data, i) => "individual_image" + i)
+      .attr("class", "isoimage")
       .attr("width", 45)
       .attr("height", yScale2(19) / 2)
       .attr("y", function(data, i) {
